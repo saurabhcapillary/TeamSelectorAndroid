@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">Team Selector</string>
+    <string name="action_settings">Settings</string>
+    <string name="kkr">Kolkata Knight Riders</string>
+    <string name="srh">Sunrisers Hyderabad</string>
+    <string name="rcb">Royal Challengers Bangalore</string>
+    <string name="dd">Delhi Daredevis</string>
+    <string name="kx1p">Kings X1 Punjab</string>
+    <string name="mi">Mumbai Indians</string>
+    <string name="gl">Gujarat Lions</string>
+    <string name="rps">Rising Pune Supergiants</string>
+    <string name="tab_notifications">Notifications</string>
+    <string name="tab_settings">Settings</string>
+    <string name="tab_home">Home</string>
+    <string name="tab_squads">Squads</string>
+    <string name="tab_matches">Matches</string>
+    <string name="rules_econ">Econ Rate (Min overs 3) \n 1.  less than 6.0: 20 \n 2. less than 5.0 : 30 \n 3. less than 4.0 : 40 </string>
+</resources>

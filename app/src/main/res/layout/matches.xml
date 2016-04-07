@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:background="@color/Steel_Blue"
+              android:paddingTop="0dp"
+              android:paddingLeft="0dp"
+              android:paddingRight="0dp">
+
+    <!--<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent" android:background="@color/light_font">
+
+        <ImageButton
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/menu1"
+                android:contentDescription="@string/app_name"
+                android:onClick="showPopup"/>
+
+      <ImageView android:src="@drawable/ipl_logo"
+                   android:layout_width="wrap_content"
+                   android:layout_marginLeft="-72dp"
+                   android:layout_height="50dp"
+                   android:layout_marginBottom="0dp"/>
+
+    </RelativeLayout>-->
+
+
+    <ListView
+            android:id="@+id/matchesListView"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent" >
+    </ListView>
+
+</LinearLayout>

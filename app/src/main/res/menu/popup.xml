@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+            android:id="@+id/home"
+            android:title="Home"/>
+    <item
+            android:id="@+id/profile"
+            android:title="Profile"/>
+
+    <item
+            android:id="@+id/matches"
+            android:title="Fixtures"
+            android:showAsAction="always"/>
+
+            <item android:id="@+id/kkr"
+                  android:icon="@drawable/kkr"
+                  android:title="@string/kkr" />
+            <item android:id="@+id/srh"
+                  android:title="@string/srh" />
+            <item android:id="@+id/rcb"
+                  android:icon="@drawable/rcb"
+                  android:title="@string/rcb" />
+            <item android:id="@+id/dd"
+                  android:icon="@drawable/dd"
+                  android:title="@string/dd" />
+            <item android:id="@+id/kx1p"
+                  android:icon="@drawable/kx1p"
+                  android:title="@string/kx1p" />
+            <item android:id="@+id/mi"
+                  android:icon="@drawable/mi"
+                  android:title="@string/mi" />
+            <item android:id="@+id/gl"
+                  android:icon="@mipmap/gl"
+                  android:title="@string/gl" />
+            <item android:id="@+id/rps"
+                  android:icon="@mipmap/rps"
+                  android:title="@string/rps" />
+            <item android:id="@+id/about"
+                    android:title="Rules" />
+    <item android:id="@+id/signOut"
+          android:title="Signout" />
+
+</menu>

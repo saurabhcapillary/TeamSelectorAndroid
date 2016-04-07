@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:fitsSystemWindows="true"
+        android:background="@color/Steel_Blue">
+
+    <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="30dp"
+            android:paddingLeft="24dp"
+            android:paddingRight="24dp">
+
+        <ImageView android:src="@drawable/ipl_logo"
+                   android:layout_width="wrap_content"
+                   android:layout_height="72dp"
+                   android:layout_marginBottom="20dp"
+                   android:layout_gravity="center_horizontal" />
+
+        <!-- Name Label -->
+      <!--  <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"> -->
+            <EditText android:id="@+id/registerName"
+                      android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:inputType="textCapWords"
+                      android:hint="Name"
+                      android:textColor="@color/white"/>
+
+        <EditText android:id="@+id/registerNickname"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:inputType="textEmailAddress"
+                  android:hint="ScreenName (Mandatory)"
+                  android:textColor="@color/white"/>
+
+        <EditText android:id="@+id/registerCity"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:inputType="textEmailAddress"
+                  android:hint="City (Optional)"
+                  android:textColor="@color/white"/>
+
+        <EditText android:id="@+id/registerMobile"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:inputType="phone"
+                  android:hint="Mobile (Optional)"
+                  android:textColor="@color/white"/>
+       <!-- </android.support.design.widget.TextInputLayout> -->
+
+        <!--  Email Label -->
+     <!--   <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"> -->
+            <EditText android:id="@+id/registerEmail"
+                      android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:inputType="textEmailAddress"
+                      android:hint="Email (Optional)"
+                      android:textColor="@color/white"/>
+
+       <!-- </android.support.design.widget.TextInputLayout> -->
+
+        <!-- Password Label -->
+      <!--  <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"> -->
+            <EditText android:id="@+id/registerPassword"
+                      android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:inputType="textPassword"
+                      android:hint="Password (Mandatory)"
+                      android:textColor="@color/white"/>
+       <!-- </android.support.design.widget.TextInputLayout> -->
+
+        <!-- Signup Button -->
+       <!-- <android.support.v7.widget.AppCompatButton
+                android:id="@+id/btn_signup"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:layout_marginBottom="24dp"
+                android:padding="12dp"
+                android:text="Create Account"/> -->
+
+        <TextView android:id="@+id/link_login"
+                  android:layout_width="fill_parent"
+                  android:layout_height="wrap_content"
+                  android:layout_marginBottom="24dp"
+                  android:text="Already a member? Login"
+                  android:gravity="center"
+                  android:textSize="16dip"/>
+
+        <Button
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="Register"
+                android:id="@+id/btn_register"
+                android:padding="12dp"
+                android:layout_gravity="center_horizontal"
+                android:clickable="true"
+                android:background="@color/white"
+                android:textColor="@color/Steel_Blue"
+                android:onClick="register"/>
+
+        <TextView android:id="@+id/registerErrorMessage"
+                  android:layout_width="fill_parent"
+                  android:layout_height="wrap_content"
+                  android:layout_marginBottom="24dp"
+                  android:text="Error occurred"
+                  android:gravity="center"
+                  android:textSize="16dip"
+                  android:textColor="@color/red"
+                  android:visibility="invisible"/>
+
+    </LinearLayout>
+</ScrollView>
