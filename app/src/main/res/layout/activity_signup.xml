@@ -30,7 +30,7 @@
                       android:layout_width="match_parent"
                       android:layout_height="wrap_content"
                       android:inputType="textCapWords"
-                      android:hint="Name"
+                      android:hint="Name (Mandatory)"
                       android:textColor="@color/white"/>
 
         <EditText android:id="@+id/registerNickname"

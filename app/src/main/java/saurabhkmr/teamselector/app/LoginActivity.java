@@ -72,12 +72,6 @@ public class LoginActivity extends Activity {
         JSONObject jsonObject=new JSONObject();
         String nickName=usernameText.getText().toString();
         String password=passwordText.getText().toString();
-       // if(Pattern.matches(EMAIL_PATTERN,emailOrMobile)){
-         //   jsonObject.put("email",emailOrMobile);
-       // }
-       // else {
-         //   jsonObject.put("mobile",emailOrMobile);
-        //}
         jsonObject.put("nickName",nickName);
         jsonObject.put("passwordHash",password);
         MyAsyncTask asyncTask =new MyAsyncTask(new AsyncResponse() {
@@ -101,6 +95,7 @@ public class LoginActivity extends Activity {
                     editor.putString("mobile",users.getString("mobile"));
                     editor.putString("nickName",users.getString("nickName"));
                     editor.putLong("points",users.getLong("totalPoints"));
+                    editor.putLong("id",users.getLong("id"));
                     editor.commit();
                     startActivity(intent);
                 }

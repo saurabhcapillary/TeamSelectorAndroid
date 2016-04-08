@@ -71,6 +71,12 @@ public class RegisterActivity extends Activity {
             return;
         }
 
+        if(name==""){
+            errorTextView.setText("Name is mandatory");
+            errorTextView.setVisibility(View.VISIBLE);
+            return;
+        }
+
         if(password==""){
             errorTextView.setText("Password is mandatory");
             errorTextView.setVisibility(View.VISIBLE);

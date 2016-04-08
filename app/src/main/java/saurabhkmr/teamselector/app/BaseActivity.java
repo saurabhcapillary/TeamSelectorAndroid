@@ -55,6 +55,11 @@ public class BaseActivity extends Activity {
                 Intent aboutIntent = new Intent(BaseActivity.this, AboutActivity.class);
                 startActivity(aboutIntent);
                 return true;
+            case R.id.leaderboard:
+                Log.d("leaderboard","leaderboard");
+                Intent leaderBoardItemt = new Intent(BaseActivity.this, LeaderboardActivity.class);
+                startActivity(leaderBoardItemt);
+                return true;
             case R.id.signOut:
                 Log.d("signOut","signOut");
                 SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", 0);
@@ -753,6 +758,9 @@ public class BaseActivity extends Activity {
 
         popup.show();
     }
+
+
+
 
 }
 

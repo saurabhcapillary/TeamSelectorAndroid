@@ -24,6 +24,10 @@ public class Players implements Serializable {
     private String countryName;
     private String squadName;
     private boolean homeSquad;
+    private boolean selected;
+    private boolean captain;
+    private long matchId;
+    private long userId;
 
     public long getId() {
         return id;
@@ -79,6 +83,38 @@ public class Players implements Serializable {
 
     public void setHomeSquad(boolean homeSquad) {
         this.homeSquad = homeSquad;
+    }
+
+    public void setSelected(boolean selected) {
+        this.selected = selected;
+    }
+
+    public boolean isSelected() {
+        return selected;
+    }
+
+    public boolean isCaptain() {
+        return captain;
+    }
+
+    public void setCaptain(boolean captain) {
+        this.captain = captain;
+    }
+
+    public long getMatchId() {
+        return matchId;
+    }
+
+    public void setMatchId(long matchId) {
+        this.matchId = matchId;
+    }
+
+    public long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(long userId) {
+        this.userId = userId;
     }
 }
 

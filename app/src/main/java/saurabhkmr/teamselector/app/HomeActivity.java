@@ -40,6 +40,7 @@ public class HomeActivity extends BaseActivity {
     ImageView match2Squad1ImageView;
     ImageView match2Squad2ImageView;
     Button match2Button;
+    long matchId;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -63,8 +64,10 @@ public class HomeActivity extends BaseActivity {
         match2Squad2ImageView=(ImageView)findViewById(R.id.match2Squad2ImgHome);
         match2VsTextView=(TextView)findViewById(R.id.match2VsHome);
         match2Button=(Button)findViewById(R.id.btn_SelectTeam2);
-
         getMatches();
+
+        SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", 0);
+        matchId=pref.getLong("matchid",0);
     }
 
     public static String getDateHourMinSecond(long startTime) {
@@ -105,6 +108,11 @@ public class HomeActivity extends BaseActivity {
                             countDownTxtView.setText(countDown);
                             String squad1 = matches.getJSONObject(i).getString("homeTeam");
                             String squad2 = matches.getJSONObject(i).getString("awayTeam");
+                            long id=matches.getJSONObject(i).getLong("id");
+                            if(id==matchId){
+                                match1Button.setEnabled(false);
+                                match1Button.setText("Done");
+                            }
                             match1Squad1TextViewHome.setText(squad1);
                             match1Squad2TextViewHome.setText(squad2);
                             match1VsTextView.setText("vs");
@@ -124,6 +132,7 @@ public class HomeActivity extends BaseActivity {
                         }
                         Matches match = new Matches();
                         match.setAwayTeam(matches.getJSONObject(i).getString("awayTeam"));
+                        match.setId(matches.getJSONObject(i).getLong("id"));
                         match.setHomeTeam(matches.getJSONObject(i).getString("homeTeam"));
                         match.setVenue(matches.getJSONObject(i).getString("venue"));
                         match.setDate(Utils.parseDate(matches.getJSONObject(i).getString("date")));
@@ -165,6 +174,7 @@ public class HomeActivity extends BaseActivity {
 
     public void selectTeam(View view, final Matches currentMatch){
 
+        final long matchId= (int) currentMatch.getId();
         final int homeTeamId = Matches.getId(currentMatch.getHomeTeam());
         final int awayTeamId = Matches.getId(currentMatch.getAwayTeam());
 
@@ -180,14 +190,15 @@ public class HomeActivity extends BaseActivity {
                 Log.d(output.toString(),"Response From Asynchronous task:");
                 try {
                     JSONObject jsonObject = (JSONObject) output;
-                    JSONArray matches = (JSONArray) jsonObject.get("players");
+                    JSONArray playersJson = (JSONArray) jsonObject.get("players");
 
-                    for (int i=0; i<matches.length(); i++) {
+                    for (int i=0; i<playersJson.length(); i++) {
 
                         Players players=new Players();
-                        players.setName(matches.getJSONObject(i).getString("name"));
-                        players.setCountryName(matches.getJSONObject(i).getString("countryName"));
-                        players.setId(homeTeamId);
+                        players.setName(playersJson.getJSONObject(i).getString("name"));
+                        players.setCountryName(playersJson.getJSONObject(i).getString("countryName"));
+                        players.setId(playersJson.getJSONObject(i).getLong("id"));
+                        players.setMatchId(matchId);
                         players.setSquadName(currentMatch.getHomeTeam());
                         players.setHomeSquad(true);
                         playersList.add(players);
@@ -212,7 +223,8 @@ public class HomeActivity extends BaseActivity {
                                     Players players=new Players();
                                     players.setName(matches.getJSONObject(i).getString("name"));
                                     players.setCountryName(matches.getJSONObject(i).getString("countryName"));
-                                    players.setId(awayTeamId);
+                                    players.setId(matches.getJSONObject(i).getLong("id"));
+                                    players.setMatchId(matchId);
                                     players.setSquadName(currentMatch.getAwayTeam());
                                     squad2Players.add(players);
                                 }
@@ -231,7 +243,6 @@ public class HomeActivity extends BaseActivity {
                     });
                     asyncTaskRps.execute(new Object[] { urlRps,"GET"});
 
-                    Log.d(matches.getString(0),"players");
                 }
                 catch (Exception ex){
 
@@ -241,5 +252,10 @@ public class HomeActivity extends BaseActivity {
         asyncTaskRps.execute(new Object[] { urlRps,"GET"});
 
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        moveTaskToBack(true);
     }
 }

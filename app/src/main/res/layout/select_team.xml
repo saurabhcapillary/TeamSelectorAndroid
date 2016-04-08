@@ -30,18 +30,42 @@
     <ImageView android:src="@drawable/mi"
                android:layout_width="60dp"
                android:layout_height="60dp"
-               android:layout_marginLeft="120dp"
+               android:layout_marginLeft="100dp"
                android:id="@+id/tp_squad2Img"
                android:paddingTop="8dp"
                android:layout_alignParentTop="true"
     />
+
+            <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Pick Captain"
+                    android:id="@+id/btn_login"
+                    android:padding="2dp"
+                    android:layout_gravity="right"
+                    android:clickable="true"
+                    android:background="@color/white"
+                    android:textColor="@color/Steel_Blue"
+                    android:onClick="submitTeam"/>
         </LinearLayout>
 
     </RelativeLayout>
+
+    <TextView android:id="@+id/error_messagePickTeam"
+              android:layout_width="fill_parent"
+              android:layout_height="wrap_content"
+              android:layout_marginBottom="24dp"
+              android:text="Error occurred"
+              android:gravity="center"
+              android:textSize="16dip"
+              android:textColor="@color/red"
+              android:visibility="invisible"/>
 
     <ListView
             android:id="@+id/pick_PlayersListView"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent" >
     </ListView>
+
+
 </LinearLayout>
