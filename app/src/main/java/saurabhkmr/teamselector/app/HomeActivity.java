@@ -87,7 +87,7 @@ public class HomeActivity extends BaseActivity {
     }
     public void getMatches(){
 
-        String url = "http://ec2-52-11-41-143.us-west-2.compute.amazonaws.com/v1/matches?seriesName=ipl";
+        String url = "http://ec2-52-11-41-143.us-west-2.compute.amazonaws.com/v1/matches?seriesName=ipl&upcoming=true";
 
         MyAsyncTask asyncTask =new MyAsyncTask(new AsyncResponse() {
 
