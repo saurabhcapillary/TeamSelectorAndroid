@@ -10,9 +10,11 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import saurabhkmr.teamselector.app.Utils.Utils;
 import saurabhkmr.teamselector.app.models.Matches;
+import saurabhkmr.teamselector.app.models.Players;
 import saurabhkmr.teamselector.app.requests.AsyncResponse;
 import saurabhkmr.teamselector.app.requests.MyAsyncTask;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -106,8 +108,8 @@ public class HomeActivity extends BaseActivity {
                             match1Squad1TextViewHome.setText(squad1);
                             match1Squad2TextViewHome.setText(squad2);
                             match1VsTextView.setText("vs");
-                            setImage(match1Squad1ImageView, squad1);
-                            setImage(match1Squad2ImageView, squad2);
+                            Utils.setImage(match1Squad1ImageView, squad1);
+                            Utils.setImage(match1Squad2ImageView, squad2);
                             match1Button.setVisibility(View.VISIBLE);
                         }
                         if (i == 1) {
@@ -116,8 +118,8 @@ public class HomeActivity extends BaseActivity {
                             match2Squad1TextViewHome.setText(squad1);
                             match2Squad2TextViewHome.setText(squad2);
                             match2VsTextView.setText("vs");
-                            setImage(match2Squad1ImageView, squad1);
-                            setImage(match2Squad2ImageView, squad2);
+                            Utils.setImage(match2Squad1ImageView, squad1);
+                            Utils.setImage(match2Squad2ImageView, squad2);
                             match2Button.setVisibility(View.VISIBLE);
                         }
                         Matches match = new Matches();
@@ -139,43 +141,105 @@ public class HomeActivity extends BaseActivity {
 
 
 
-    public void setImage(ImageView imageView,String squadName){
-        switch (squadName.toLowerCase()){
-            case "mi":
-                imageView.setImageResource(R.drawable.mi);
-                break;
-            case "dd":
-                imageView.setImageResource(R.drawable.dd);
-                break;
-            case "rcb":
-                imageView.setImageResource(R.drawable.rcb);
-                break;
-            case "srh":
-                imageView.setImageResource(R.drawable.srh);
-                break;
-            case "kx1p":
-                imageView.setImageResource(R.drawable.kx1p);
-                break;
-            case "kkr":
-                imageView.setImageResource(R.drawable.kkr);
-                break;
-            case "gl":
-                imageView.setImageResource(R.mipmap.gl);
-                break;
-            case "rps":
-                imageView.setImageResource(R.mipmap.rps);
-                break;
-            default:break;
-        }
-    }
-
-
     public void selectTeamMatch1(View view) {
+        try {
+            Matches match = matchesList.get(0);
+            selectTeam(view,match);
+        }
+        catch (Exception ex){
+            Log.d("something wrong happened", ex.getMessage());
+        }
 
     }
 
 
     public void selectTeamMatch2(View view) {
-        
+        try {
+            Matches match = matchesList.get(1);
+            selectTeam(view,match);
+        }
+        catch (Exception ex){
+            Log.d("something wrong happened", ex.getMessage());
+        }
+    }
+
+    public void selectTeam(View view, final Matches currentMatch){
+
+        final int homeTeamId = Matches.getId(currentMatch.getHomeTeam());
+        final int awayTeamId = Matches.getId(currentMatch.getAwayTeam());
+
+        String urlRps = "http://ec2-52-11-41-143.us-west-2.compute.amazonaws.com/v1/players/"+homeTeamId;
+        MyAsyncTask asyncTaskRps =new MyAsyncTask(new AsyncResponse() {
+
+            List<Players> playersList=new ArrayList<Players>();
+            @Override
+            public void processFinish(Object output) {
+                if(output==null){
+                    return;
+                }
+                Log.d(output.toString(),"Response From Asynchronous task:");
+                try {
+                    JSONObject jsonObject = (JSONObject) output;
+                    JSONArray matches = (JSONArray) jsonObject.get("players");
+
+                    for (int i=0; i<matches.length(); i++) {
+
+                        Players players=new Players();
+                        players.setName(matches.getJSONObject(i).getString("name"));
+                        players.setCountryName(matches.getJSONObject(i).getString("countryName"));
+                        players.setId(homeTeamId);
+                        players.setSquadName(currentMatch.getHomeTeam());
+                        players.setHomeSquad(true);
+                        playersList.add(players);
+                    }
+
+                    String urlRps = "http://ec2-52-11-41-143.us-west-2.compute.amazonaws.com/v1/players/"+awayTeamId;
+                    MyAsyncTask asyncTaskRps =new MyAsyncTask(new AsyncResponse() {
+
+                        @Override
+                        public void processFinish(Object output) {
+                            List<Players> squad2Players=new ArrayList<>();
+                            if(output==null){
+                                return;
+                            }
+                            Log.d(output.toString(),"Response From Asynchronous task:");
+                            try {
+                                JSONObject jsonObject = (JSONObject) output;
+                                JSONArray matches = (JSONArray) jsonObject.get("players");
+
+                                for (int i=0; i<matches.length(); i++) {
+
+                                    Players players=new Players();
+                                    players.setName(matches.getJSONObject(i).getString("name"));
+                                    players.setCountryName(matches.getJSONObject(i).getString("countryName"));
+                                    players.setId(awayTeamId);
+                                    players.setSquadName(currentMatch.getAwayTeam());
+                                    squad2Players.add(players);
+                                }
+
+                                Intent intent = new Intent(HomeActivity.this, PickTeamActivity.class);
+                                intent.putExtra("squad1Players",(Serializable)playersList);
+                                intent.putExtra("squad2Players",(Serializable)squad2Players);
+                                startActivity(intent);
+
+                                Log.d(matches.getString(0),"players");
+                            }
+                            catch (Exception ex){
+
+                            }
+                        }
+                    });
+                    asyncTaskRps.execute(new Object[] { urlRps,"GET"});
+
+                    Log.d(matches.getString(0),"players");
+                }
+                catch (Exception ex){
+
+                }
+            }
+        });
+        asyncTaskRps.execute(new Object[] { urlRps,"GET"});
+
+
     }
 }

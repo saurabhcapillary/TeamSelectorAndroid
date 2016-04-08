@@ -23,6 +23,7 @@ public class Players implements Serializable {
     private long countryId;
     private String countryName;
     private String squadName;
+    private boolean homeSquad;
 
     public long getId() {
         return id;
@@ -70,6 +71,14 @@ public class Players implements Serializable {
 
     public void setSquadName(String squadName) {
         this.squadName = squadName;
+    }
+
+    public boolean isHomeSquad() {
+        return homeSquad;
+    }
+
+    public void setHomeSquad(boolean homeSquad) {
+        this.homeSquad = homeSquad;
     }
 }
 

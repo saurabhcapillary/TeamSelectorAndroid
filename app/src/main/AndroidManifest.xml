@@ -44,6 +44,10 @@
                 android:name=".ProfileActivity"
                 android:label="@string/app_name">
         </activity>
+        <activity
+                android:name=".PickTeamActivity"
+                android:label="@string/app_name">
+        </activity>
 
     </application>
 </manifest>

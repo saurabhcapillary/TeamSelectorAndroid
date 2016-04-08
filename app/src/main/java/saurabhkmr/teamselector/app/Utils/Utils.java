@@ -1,5 +1,8 @@
 package saurabhkmr.teamselector.app.Utils;
 
+import android.widget.ImageView;
+import saurabhkmr.teamselector.app.R;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -33,5 +36,35 @@ public class Utils {
             e.printStackTrace();
         }
         return val;
+    }
+
+    public static void setImage(ImageView imageView, String squadName){
+        switch (squadName.toLowerCase()){
+            case "mi":
+                imageView.setImageResource(R.drawable.mi);
+                break;
+            case "dd":
+                imageView.setImageResource(R.drawable.dd);
+                break;
+            case "rcb":
+                imageView.setImageResource(R.drawable.rcb);
+                break;
+            case "srh":
+                imageView.setImageResource(R.drawable.srh);
+                break;
+            case "kx1p":
+                imageView.setImageResource(R.drawable.kx1p);
+                break;
+            case "kkr":
+                imageView.setImageResource(R.drawable.kkr);
+                break;
+            case "gl":
+                imageView.setImageResource(R.mipmap.gl);
+                break;
+            case "rps":
+                imageView.setImageResource(R.mipmap.rps);
+                break;
+            default:break;
+        }
     }
 }

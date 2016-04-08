@@ -9,8 +9,38 @@
               android:paddingLeft="0dp"
               android:paddingRight="0dp">
 
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal" >
+
+        <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" android:paddingTop="20dp">
+    <ImageView android:src="@drawable/mi"
+                android:layout_width="60dp"
+               android:layout_height="60dp"
+               android:layout_marginLeft="50dp"
+               android:paddingLeft="0dp"
+               android:id="@+id/tp_squad1Img"
+               android:paddingTop="8dp"
+               android:layout_alignParentTop="true"
+    />
+
+    <ImageView android:src="@drawable/mi"
+               android:layout_width="60dp"
+               android:layout_height="60dp"
+               android:layout_marginLeft="120dp"
+               android:id="@+id/tp_squad2Img"
+               android:paddingTop="8dp"
+               android:layout_alignParentTop="true"
+    />
+        </LinearLayout>
+
+    </RelativeLayout>
+
     <ListView
-            android:id="@+id/selectPlayersListView"
+            android:id="@+id/pick_PlayersListView"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent" >
     </ListView>

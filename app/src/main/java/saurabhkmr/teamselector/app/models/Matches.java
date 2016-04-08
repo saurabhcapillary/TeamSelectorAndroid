@@ -61,4 +61,27 @@ public class Matches implements Serializable {
     public void setAwayTeam(String awayTeam) {
         this.awayTeam = awayTeam;
     }
+
+    public static int getId(String squadName){
+        switch (squadName.toLowerCase()){
+            case "mi":
+                return 6;
+            case "dd":
+                return 4;
+            case "rcb":
+                return 3;
+            case "srh":
+                break;
+            case "kx1p":
+                return 5;
+            case "kkr":
+                return 1;
+            case "gl":
+                return 7;
+            case "rps":
+                return 8;
+            default:break;
+        }
+        return 0;
+    }
 }

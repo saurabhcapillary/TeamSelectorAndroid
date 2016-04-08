@@ -12,6 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import saurabhkmr.teamselector.app.MatchesActivity;
 import saurabhkmr.teamselector.app.R;
+import saurabhkmr.teamselector.app.Utils.Utils;
 import saurabhkmr.teamselector.app.models.Matches;
 
 import java.util.Date;
@@ -80,61 +81,9 @@ public class CustomAdapter extends BaseAdapter {
         holder.squad1.setText(squad1);
         holder.squad2.setText(squad2);
         holder.venue.setText(result.get(position).getVenue());
-        switch (squad1.toLowerCase()){
-            case "mi":
-                holder.squad1Img.setImageResource(R.drawable.mi);
-                break;
-            case "dd":
-                holder.squad1Img.setImageResource(R.drawable.dd);
-                break;
-            case "rcb":
-                holder.squad1Img.setImageResource(R.drawable.rcb);
-                break;
-            case "srh":
-                holder.squad1Img.setImageResource(R.drawable.srh);
-                break;
-            case "kx1p":
-                holder.squad1Img.setImageResource(R.drawable.kx1p);
-                break;
-            case "kkr":
-                holder.squad1Img.setImageResource(R.drawable.kkr);
-                break;
-            case "gl":
-                holder.squad1Img.setImageResource(R.mipmap.gl);
-                break;
-            case "rps":
-                holder.squad1Img.setImageResource(R.mipmap.rps);
-                break;
-            default:break;
-        }
 
-        switch (squad2.toLowerCase()){
-            case "mi":
-                holder.squad2Img.setImageResource(R.drawable.mi);
-                break;
-            case "dd":
-                holder.squad2Img.setImageResource(R.drawable.dd);
-                break;
-            case "rcb":
-                holder.squad2Img.setImageResource(R.drawable.rcb);
-                break;
-            case "srh":
-                holder.squad2Img.setImageResource(R.drawable.srh);
-                break;
-            case "kx1p":
-                holder.squad2Img.setImageResource(R.drawable.kx1p);
-                break;
-            case "kkr":
-                holder.squad2Img.setImageResource(R.drawable.kkr);
-                break;
-            case "gl":
-                holder.squad2Img.setImageResource(R.mipmap.gl);
-                break;
-            case "rps":
-                holder.squad2Img.setImageResource(R.mipmap.rps);
-                break;
-            default:break;
-        }
+        Utils.setImage(holder.squad1Img,squad1.toLowerCase());
+        Utils.setImage(holder.squad2Img,squad2);
 
         rowView.setOnClickListener(new View.OnClickListener() {
             @Override

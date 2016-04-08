@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal" >
+
+    <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:paddingTop="20dp">
+
+        <!--<ImageView android:layout_width="30dp"
+                   android:layout_height="30dp"
+                   android:paddingLeft="5dp"
+                   android:id="@+id/tp_squad1Img"
+                   android:paddingTop="8dp"
+                   android:layout_alignParentTop="true"
+
+        />-->
+
+        <CheckBox
+                android:id="@+id/tp_checkBoxSquad1"
+                android:layout_width="160dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                android:text=""
+                android:layout_marginTop="5dp"
+                android:textColor="@color/white"
+                android:visibility="invisible"
+                android:buttonTint="@color/white"/>
+
+        <!--<ImageView android:layout_width="30dp"
+                   android:layout_height="30dp"
+                   android:paddingLeft="0dp"
+                   android:id="@+id/tp_squad2Img"
+                   android:paddingTop="8dp"
+                   android:layout_alignParentTop="true"
+        />-->
+
+        <CheckBox
+                android:id="@+id/tp_checkBoxSquad2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:focusable="false"
+                android:layout_marginLeft="25dp"
+                android:focusableInTouchMode="false"
+                android:layout_marginTop="5dp"
+                android:text=""
+                android:textColor="@color/white"
+                android:visibility="invisible"
+                android:buttonTint="@color/white"/>
+
+    </LinearLayout>
+
+</RelativeLayout>
