@@ -23,7 +23,7 @@ import java.util.List;
  */
 public class HomeActivity extends BaseActivity {
 
-    List<Matches> matchesList;
+    static List<Matches> matchesList=new ArrayList<>();
     TextView countDownTxtView;
     //Match1
     TextView match1Squad1TextViewHome;
@@ -41,13 +41,16 @@ public class HomeActivity extends BaseActivity {
     ImageView match2Squad2ImageView;
     Button match2Button;
     long matchId;
+    long userId;
+    TextView startsIn;
+    static boolean matchInProgress;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home);
-        matchesList = new ArrayList<Matches>();
         countDownTxtView=(TextView)findViewById(R.id.countDown);
+        startsIn=(TextView)findViewById(R.id.startsInTxtViewHome);
 
         //match1
         match1Squad1TextViewHome=(TextView)findViewById(R.id.match1Squad1TextViewHome);
@@ -64,16 +67,72 @@ public class HomeActivity extends BaseActivity {
         match2Squad2ImageView=(ImageView)findViewById(R.id.match2Squad2ImgHome);
         match2VsTextView=(TextView)findViewById(R.id.match2VsHome);
         match2Button=(Button)findViewById(R.id.btn_SelectTeam2);
-        getMatches();
-
         SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", 0);
-        matchId=pref.getLong("matchid",0);
+        userId=pref.getLong("id",0);
+        teamSelected();
+        getMatches();
     }
 
-    public static String getDateHourMinSecond(long startTime) {
+    private void teamSelected() {
+        try{
+            Bundle extras = getIntent().getExtras();
+            matchId = (long) extras.getSerializable("matchId");
+
+            String urlRps = "http://ec2-52-11-41-143.us-west-2.compute.amazonaws.com/v1/" +
+                    "team_select?user_id="+userId+"&match_id="+matchId;
+            MyAsyncTask asyncTaskRps =new MyAsyncTask(new AsyncResponse() {
+
+                @Override
+                public void processFinish(Object output) {
+                    List<Players> playersList=new ArrayList<>();
+                    if(output==null){
+                        return;
+                    }
+                    Log.d(output.toString(),"Response From Asynchronous task:");
+                    try {
+                        JSONObject jsonObject = (JSONObject) output;
+                        JSONArray matches = (JSONArray) jsonObject.get("matchPoints");
+
+                        for (int i=0; i<matches.length(); i++) {
+
+                            Players players=new Players();
+                            players.setName(matches.getJSONObject(i).getString("playerName"));
+                            players.setId(matches.getJSONObject(i).getLong("id"));
+                            players.setSquadId(matches.getJSONObject(i).getLong("squad"));
+                            players.setCaptain(matches.getJSONObject(i).getBoolean("captain"));
+                            players.setPoints(matches.getJSONObject(i).getLong("points"));
+                            playersList.add(players);
+                        }
+                        long match1buttonTag= (long) match1Button.getTag();
+                        long match2buttonTag= (long) match2Button.getTag();
+                        if(match1buttonTag==matchId){
+                            match1Button.setText("Show Team");
+                        }
+
+                        if(match2buttonTag==matchId){
+                            match2Button.setText("Show Team");
+                        }
+
+
+                        Log.d(matches.getString(0),"players");
+                    }
+                    catch (Exception ex){
+
+                    }
+                }
+            });
+            asyncTaskRps.execute(new Object[] { urlRps,"GET"});
+
+        }
+        catch (Exception ex){
+
+        }
+    }
+
+    public  String getDateHourMinSecond(long startTime,long matchId) {
 
         long endTime=System.currentTimeMillis();
-
+        this.matchId=matchId;
         long diff = startTime-endTime;
         Log.e("day", "miliday"+diff);
         long seconds =  (diff / 1000) % 60 ;
@@ -83,7 +142,15 @@ public class HomeActivity extends BaseActivity {
         long hours   =  ((diff / (1000*60*60)) % 24);
         Log.e("hour", "miliday"+hours);
         long days = (int)((diff / (1000*60*60*24)) % 365);
-        return days + " days : " + hours + " hours";
+        if(hours<=0){
+            startsIn.setText("Match Started");
+            Utils.setCurrentMatchId(matchId);
+            return "";
+        }
+        else {
+            startsIn.setText("Next match in");
+            return days + " days : " + hours + " hours";
+        }
     }
     public void getMatches(){
 
@@ -104,14 +171,14 @@ public class HomeActivity extends BaseActivity {
                     for (int i = 0; i < matches.length(); i++) {
                         if (i == 0) {
                             long time = Utils.getTime(matches.getJSONObject(i).getString("date"));
-                            String countDown = getDateHourMinSecond(time);
+                            long id=matches.getJSONObject(i).getLong("id");
+                            String countDown = getDateHourMinSecond(time,id);
                             countDownTxtView.setText(countDown);
                             String squad1 = matches.getJSONObject(i).getString("homeTeam");
                             String squad2 = matches.getJSONObject(i).getString("awayTeam");
-                            long id=matches.getJSONObject(i).getLong("id");
+
                             if(id==matchId){
-                                match1Button.setEnabled(false);
-                                match1Button.setText("Done");
+                                match1Button.setText("Show Team");
                             }
                             match1Squad1TextViewHome.setText(squad1);
                             match1Squad2TextViewHome.setText(squad2);
@@ -119,8 +186,11 @@ public class HomeActivity extends BaseActivity {
                             Utils.setImage(match1Squad1ImageView, squad1);
                             Utils.setImage(match1Squad2ImageView, squad2);
                             match1Button.setVisibility(View.VISIBLE);
+                            match1Button.setTag(id);
+
                         }
                         if (i == 1) {
+                            long id=matches.getJSONObject(i).getLong("id");
                             String squad1 = matches.getJSONObject(i).getString("homeTeam");
                             String squad2 = matches.getJSONObject(i).getString("awayTeam");
                             match2Squad1TextViewHome.setText(squad1);
@@ -128,7 +198,11 @@ public class HomeActivity extends BaseActivity {
                             match2VsTextView.setText("vs");
                             Utils.setImage(match2Squad1ImageView, squad1);
                             Utils.setImage(match2Squad2ImageView, squad2);
+                            if(id==matchId){
+                                match2Button.setText("Show Team");
+                            }
                             match2Button.setVisibility(View.VISIBLE);
+                            match2Button.setTag(id);
                         }
                         Matches match = new Matches();
                         match.setAwayTeam(matches.getJSONObject(i).getString("awayTeam"));
@@ -152,97 +226,83 @@ public class HomeActivity extends BaseActivity {
 
     public void selectTeamMatch1(View view) {
         try {
-            Matches match = matchesList.get(0);
-            selectTeam(view,match);
+            if(match1Button.getText()=="Show Team"){
+                long currentMatchId= (long) match1Button.getTag();
+                showSelectedPlayers(currentMatchId);
+            }else {
+                Matches match = matchesList.get(0);
+                selectTeam(match.getId());
+            }
         }
         catch (Exception ex){
             Log.d("something wrong happened", ex.getMessage());
         }
-
     }
-
 
     public void selectTeamMatch2(View view) {
         try {
-            Matches match = matchesList.get(1);
-            selectTeam(view,match);
+            if (match2Button.getText() == "Show Team") {
+                long currentMatchId= (long) match2Button.getTag();
+                showSelectedPlayers(currentMatchId);
+
+            } else {
+                Matches match = matchesList.get(1);
+                selectTeam(match.getId());
+            }
         }
         catch (Exception ex){
             Log.d("something wrong happened", ex.getMessage());
         }
     }
 
-    public void selectTeam(View view, final Matches currentMatch){
+    public static Matches getMatchById(long matchId){
+        if(matchesList==null ){
+            return null;
+        }
+        else{
+            for(Matches matches:matchesList){
+                if(matches.getId()==matchId){
+                    return matches;
+                }
+            }
+        }
+        return null;
+    }
 
-        final long matchId= (int) currentMatch.getId();
-        final int homeTeamId = Matches.getId(currentMatch.getHomeTeam());
-        final int awayTeamId = Matches.getId(currentMatch.getAwayTeam());
+    public void showSelectedPlayers(long currentMatchId){
 
-        String urlRps = "http://ec2-52-11-41-143.us-west-2.compute.amazonaws.com/v1/players/"+homeTeamId;
+        String urlRps = "http://ec2-52-11-41-143.us-west-2.compute.amazonaws.com/v1/" +
+                "team_select?user_id="+userId+"&match_id="+currentMatchId;
         MyAsyncTask asyncTaskRps =new MyAsyncTask(new AsyncResponse() {
 
-            List<Players> playersList=new ArrayList<Players>();
             @Override
             public void processFinish(Object output) {
+                List<Players> playersList=new ArrayList<>();
                 if(output==null){
                     return;
                 }
                 Log.d(output.toString(),"Response From Asynchronous task:");
                 try {
                     JSONObject jsonObject = (JSONObject) output;
-                    JSONArray playersJson = (JSONArray) jsonObject.get("players");
+                    JSONArray matches = (JSONArray) jsonObject.get("matchPoints");
 
-                    for (int i=0; i<playersJson.length(); i++) {
+                    for (int i=0; i<matches.length(); i++) {
 
                         Players players=new Players();
-                        players.setName(playersJson.getJSONObject(i).getString("name"));
-                        players.setCountryName(playersJson.getJSONObject(i).getString("countryName"));
-                        players.setId(playersJson.getJSONObject(i).getLong("id"));
-                        players.setMatchId(matchId);
-                        players.setSquadName(currentMatch.getHomeTeam());
-                        players.setHomeSquad(true);
+                        players.setName(matches.getJSONObject(i).getString("playerName"));
+                        players.setId(matches.getJSONObject(i).getLong("id"));
+                        players.setSquadId(matches.getJSONObject(i).getLong("squad"));
+                        players.setCaptain(matches.getJSONObject(i).getBoolean("captain"));
+                        players.setPoints(matches.getJSONObject(i).getLong("points"));
+                        players.setMatchId(matches.getJSONObject(i).getLong("matchId"));
                         playersList.add(players);
                     }
 
-                    String urlRps = "http://ec2-52-11-41-143.us-west-2.compute.amazonaws.com/v1/players/"+awayTeamId;
-                    MyAsyncTask asyncTaskRps =new MyAsyncTask(new AsyncResponse() {
+                    Intent intent = new Intent(HomeActivity.this, CurrentMatchActivity.class);
+                    intent.putExtra("players",(Serializable)playersList);
+                    startActivity(intent);
 
-                        @Override
-                        public void processFinish(Object output) {
-                            List<Players> squad2Players=new ArrayList<>();
-                            if(output==null){
-                                return;
-                            }
-                            Log.d(output.toString(),"Response From Asynchronous task:");
-                            try {
-                                JSONObject jsonObject = (JSONObject) output;
-                                JSONArray matches = (JSONArray) jsonObject.get("players");
-
-                                for (int i=0; i<matches.length(); i++) {
-
-                                    Players players=new Players();
-                                    players.setName(matches.getJSONObject(i).getString("name"));
-                                    players.setCountryName(matches.getJSONObject(i).getString("countryName"));
-                                    players.setId(matches.getJSONObject(i).getLong("id"));
-                                    players.setMatchId(matchId);
-                                    players.setSquadName(currentMatch.getAwayTeam());
-                                    squad2Players.add(players);
-                                }
-
-                                Intent intent = new Intent(HomeActivity.this, PickTeamActivity.class);
-                                intent.putExtra("squad1Players",(Serializable)playersList);
-                                intent.putExtra("squad2Players",(Serializable)squad2Players);
-                                startActivity(intent);
-
-                                Log.d(matches.getString(0),"players");
-                            }
-                            catch (Exception ex){
-
-                            }
-                        }
-                    });
-                    asyncTaskRps.execute(new Object[] { urlRps,"GET"});
-
+                    Log.d(matches.getString(0),"players");
                 }
                 catch (Exception ex){
 
@@ -250,9 +310,10 @@ public class HomeActivity extends BaseActivity {
             }
         });
         asyncTaskRps.execute(new Object[] { urlRps,"GET"});
-
-
     }
+
+
+
 
     @Override
     public void onBackPressed() {

@@ -110,10 +110,7 @@ public class PickTeamActivity extends BaseActivity {
                                 try {
                                     JSONObject jsonObject = (JSONObject) output;
                                     if(jsonObject.toString().contains("200")) {
-                                        SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", 0);
-                                        SharedPreferences.Editor editor = pref.edit();
-                                        editor.putLong("matchid",matchId);
-                                        editor.commit();
+                                        intent.putExtra("matchId",matchId);
                                         startActivity(intent);
                                     }
                                 }

@@ -13,6 +13,16 @@ import java.util.TimeZone;
  */
 public class Utils {
 
+    private static long currentMatchId;
+
+    public static long getCurrentMatchId() {
+        return currentMatchId;
+    }
+
+    public static void setCurrentMatchId(long currentMatchId) {
+        Utils.currentMatchId = currentMatchId;
+    }
+
     public static String parseDate(String dateString){
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
         SimpleDateFormat sdf2 = new SimpleDateFormat("MMM-dd HH:mm");

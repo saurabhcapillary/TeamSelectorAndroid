@@ -21,8 +21,11 @@ public class MyAsyncTask extends AsyncTask<Object,Object,JSONObject> {
         if("GET".equals(params[1])) {
             return RestService.sendGET(params[0]);
         }
-        else{
+        if("POST".equals(params[1])){
             return RestService.sendPOST(params[0],(JSONObject)params[2]);
+        }
+        else{
+            return RestService.sendDelete(params[0]);
         }
     }
 

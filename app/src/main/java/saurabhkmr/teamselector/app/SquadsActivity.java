@@ -3,6 +3,7 @@ package saurabhkmr.teamselector.app;;
 import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -34,9 +35,8 @@ public class SquadsActivity extends BaseActivity {
         squadImageView=(ImageView)findViewById(R.id.squadLogo);
         Bundle extras = getIntent().getExtras();
         List<Players> players = (ArrayList<Players>) extras.getSerializable("players");
-        if(players!=null && players.size()>0) {
-
-            long squadId=players.get(0).getId();
+        if(players!=null && players.size()>0 && players.size()!=11) {
+            long squadId=players.get(0).getSquadId();
             int val=(int)squadId;
             switch (val){
                 case 6:
@@ -90,8 +90,10 @@ public class SquadsActivity extends BaseActivity {
                     break;
                 default:break;
             }
-
-            lv.setAdapter(new CustomSquadAdapter(this, players));
         }
+        else{
+            squadImageView.setVisibility(View.INVISIBLE);
+        }
+        lv.setAdapter(new CustomSquadAdapter(this, players));
     }
 }

@@ -124,13 +124,13 @@ public class CheckBoxListviewAdapter extends BaseAdapter  {
     private void maintainPlayersSelectedSquad1(boolean isChecked, int position) {
         if(squad1Players.get(position).isSelected()){
             if(!selectedPlayers.contains(squad1Players.get(position))) {
-                Toast.makeText(context, "Players selected count "+selectedPlayers.size(), Toast.LENGTH_LONG).show();
+           //     Toast.makeText(context, "Players selected count "+selectedPlayers.size(), Toast.LENGTH_LONG).show();
                 selectedPlayers.add(squad1Players.get(position));
             }
         }
         else{
             if(selectedPlayers.contains(squad1Players.get(position))) {
-                Toast.makeText(context, "Players selected count "+selectedPlayers.size(), Toast.LENGTH_LONG).show();
+             //   Toast.makeText(context, "Players selected count "+selectedPlayers.size(), Toast.LENGTH_LONG).show();
                 selectedPlayers.remove(squad1Players.get(position));
             }
         }
@@ -140,13 +140,13 @@ public class CheckBoxListviewAdapter extends BaseAdapter  {
     private void maintainPlayersSelectedSquad2(boolean isChecked, int position) {
         if(squad2Players.get(position).isSelected()){
             if(!selectedPlayers.contains(squad2Players.get(position))) {
-                Toast.makeText(context, "Players selected count "+selectedPlayers.size(), Toast.LENGTH_LONG).show();
+               // Toast.makeText(context, "Players selected count "+selectedPlayers.size(), Toast.LENGTH_LONG).show();
                 selectedPlayers.add(squad2Players.get(position));
             }
         }
         else {
             if(selectedPlayers.contains(squad1Players.get(position))) {
-                Toast.makeText(context, "Players selected count "+selectedPlayers.size(), Toast.LENGTH_LONG).show();
+               // Toast.makeText(context, "Players selected count "+selectedPlayers.size(), Toast.LENGTH_LONG).show();
                 selectedPlayers.remove(squad2Players.get(position));
             }
         }

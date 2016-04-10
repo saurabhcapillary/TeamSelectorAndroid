@@ -28,6 +28,7 @@ public class Players implements Serializable {
     private boolean captain;
     private long matchId;
     private long userId;
+    private long points;
 
     public long getId() {
         return id;
@@ -115,6 +116,15 @@ public class Players implements Serializable {
 
     public void setUserId(long userId) {
         this.userId = userId;
+    }
+
+
+    public long getPoints() {
+        return points;
+    }
+
+    public void setPoints(long points) {
+        this.points = points;
     }
 }
 

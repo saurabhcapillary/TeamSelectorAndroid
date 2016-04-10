@@ -38,8 +38,10 @@
                   android:title="@string/rps" />
             <item android:id="@+id/about"
                     android:title="Rules" />
-    <item android:id="@+id/leaderboard"
+    <item android:id="@+id/overallLeaderboard"
           android:title="LeaderBoard" />
+    <item android:id="@+id/currentLeaderboard"
+          android:title="Current LeaderBoard" />
     <item android:id="@+id/signOut"
           android:title="Signout" />
 

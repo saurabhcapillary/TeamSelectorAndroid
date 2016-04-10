@@ -8,6 +8,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+import saurabhkmr.teamselector.app.CurrentMatchLeaderBoard;
 import saurabhkmr.teamselector.app.LeaderboardActivity;
 import saurabhkmr.teamselector.app.MatchesActivity;
 import saurabhkmr.teamselector.app.R;
@@ -27,10 +28,15 @@ public class UserPointsAdapter extends BaseAdapter {
     int [] imageId;
     private static LayoutInflater inflater=null;
 
-    public UserPointsAdapter(LeaderboardActivity mainActivity, List<User> users) {
+    public UserPointsAdapter(CurrentMatchLeaderBoard currentMatchLeaderBoard,LeaderboardActivity mainActivity, List<User> users) {
         // TODO Auto-generated constructor stub
         result=users;
-        context=mainActivity;
+        if(currentMatchLeaderBoard==null) {
+            context = mainActivity;
+        }
+        else {
+            context=currentMatchLeaderBoard;
+        }
         inflater = ( LayoutInflater )context.
                 getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
@@ -57,6 +63,7 @@ public class UserPointsAdapter extends BaseAdapter {
     {
         TextView name;
         TextView points;
+        TextView rank;
     }
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
@@ -68,7 +75,11 @@ public class UserPointsAdapter extends BaseAdapter {
         holder.points=(TextView) rowView.findViewById(R.id.user_points);
         String name=result.get(position).getName();
         Long points=result.get(position).getPoints();
-        holder.name.setText(name);
+        int rank=result.get(position).getRank();
+        if(name==""){
+            name="Not Available";
+        }
+        holder.name.setText("Rank #"+rank+"   "+name);
         holder.points.setText(points.toString());
 
         rowView.setOnClickListener(new View.OnClickListener() {

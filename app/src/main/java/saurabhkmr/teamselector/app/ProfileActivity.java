@@ -66,7 +66,7 @@ public class ProfileActivity extends BaseActivity {
                 try {
                     JSONObject jsonObject = (JSONObject) output;
                     String points = jsonObject.getString("points");
-                    pointsTextView.setText(points);
+                    pointsTextView.setText(points+" points");
 
                 }
                 catch (Exception ex){

@@ -16,6 +16,7 @@ public class User implements Serializable{
     private String city;
     private long points;
     private String nickName;
+    private int rank;
 
     public String getCity() {
         return city;
@@ -95,5 +96,13 @@ public class User implements Serializable{
 
     public void setNickName(String nickName) {
         this.nickName = nickName;
+    }
+
+    public int getRank() {
+        return rank;
+    }
+
+    public void setRank(int rank) {
+        this.rank = rank;
     }
 }

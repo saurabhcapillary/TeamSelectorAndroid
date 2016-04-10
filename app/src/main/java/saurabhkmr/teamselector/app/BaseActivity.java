@@ -36,9 +36,9 @@ public class BaseActivity extends Activity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        Toast.makeText(BaseActivity.this,
-                "Clicked popup menu item " + item.getTitle(),
-                Toast.LENGTH_SHORT).show();
+       // Toast.makeText(BaseActivity.this,
+               // "Clicked popup menu item " + item.getTitle(),
+               // Toast.LENGTH_SHORT).show();
         switch (item.getItemId()) {
             case R.id.profile:
                 Log.d("profile","profile");
@@ -55,10 +55,15 @@ public class BaseActivity extends Activity {
                 Intent aboutIntent = new Intent(BaseActivity.this, AboutActivity.class);
                 startActivity(aboutIntent);
                 return true;
-            case R.id.leaderboard:
-                Log.d("leaderboard","leaderboard");
-                Intent leaderBoardItemt = new Intent(BaseActivity.this, LeaderboardActivity.class);
-                startActivity(leaderBoardItemt);
+            case R.id.overallLeaderboard:
+                Log.d("overallLeaderboard","overallLeaderboard");
+                Intent leaderBoard = new Intent(BaseActivity.this, LeaderboardActivity.class);
+                startActivity(leaderBoard);
+                return true;
+            case R.id.currentLeaderboard:
+                Log.d("currentLeaderboard","currentLeaderboard");
+                Intent currentMatchLeaderboard = new Intent(BaseActivity.this, CurrentMatchLeaderBoard.class);
+                startActivity(currentMatchLeaderboard);
                 return true;
             case R.id.signOut:
                 Log.d("signOut","signOut");
@@ -132,7 +137,7 @@ public class BaseActivity extends Activity {
                                 Players players=new Players();
                                 players.setName(matches.getJSONObject(i).getString("name"));
                                 players.setCountryName(matches.getJSONObject(i).getString("countryName"));
-                                players.setId(1);
+                                players.setSquadId(1);
                                 kkrPlayersList.add(players);
                             }
 
@@ -169,7 +174,7 @@ public class BaseActivity extends Activity {
                                 Players players=new Players();
                                 players.setName(matches.getJSONObject(i).getString("name"));
                                 players.setCountryName(matches.getJSONObject(i).getString("countryName"));
-                                players.setId(2);
+                                players.setSquadId(2);
                                 srhPlayersList.add(players);
                             }
 
@@ -207,7 +212,7 @@ public class BaseActivity extends Activity {
                                 Players players=new Players();
                                 players.setName(matches.getJSONObject(i).getString("name"));
                                 players.setCountryName(matches.getJSONObject(i).getString("countryName"));
-                                players.setId(3);
+                                players.setSquadId(3);
                                 kkrPlayersList.add(players);
                             }
 
@@ -244,7 +249,7 @@ public class BaseActivity extends Activity {
                                 Players players=new Players();
                                 players.setName(matches.getJSONObject(i).getString("name"));
                                 players.setCountryName(matches.getJSONObject(i).getString("countryName"));
-                                players.setId(4);
+                                players.setSquadId(4);
                                 ddPlayersList.add(players);
                             }
 
@@ -282,7 +287,7 @@ public class BaseActivity extends Activity {
                                 Players players=new Players();
                                 players.setName(matches.getJSONObject(i).getString("name"));
                                 players.setCountryName(matches.getJSONObject(i).getString("countryName"));
-                                players.setId(6);
+                                players.setSquadId(6);
                                 srhPlayersList.add(players);
                             }
 
@@ -320,7 +325,7 @@ public class BaseActivity extends Activity {
                                 Players players=new Players();
                                 players.setName(matches.getJSONObject(i).getString("name"));
                                 players.setCountryName(matches.getJSONObject(i).getString("countryName"));
-                                players.setId(5);
+                                players.setSquadId(5);
                                 srhPlayersList.add(players);
                             }
 
@@ -358,7 +363,7 @@ public class BaseActivity extends Activity {
                                 Players players=new Players();
                                 players.setName(matches.getJSONObject(i).getString("name"));
                                 players.setCountryName(matches.getJSONObject(i).getString("countryName"));
-                                players.setId(7);
+                                players.setSquadId(7);
                                 srhPlayersList.add(players);
                             }
 
@@ -396,7 +401,7 @@ public class BaseActivity extends Activity {
                                 Players players=new Players();
                                 players.setName(matches.getJSONObject(i).getString("name"));
                                 players.setCountryName(matches.getJSONObject(i).getString("countryName"));
-                                players.setId(8);
+                                players.setSquadId(8);
                                 rpsPlayersList.add(players);
                             }
 
@@ -423,9 +428,9 @@ public class BaseActivity extends Activity {
         inflater.inflate(R.menu.popup, popup.getMenu());
         popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
             public boolean onMenuItemClick(MenuItem item) {
-                Toast.makeText(BaseActivity.this,
-                        "Clicked popup menu item " + item.getTitle(),
-                        Toast.LENGTH_SHORT).show();
+               // Toast.makeText(BaseActivity.this,
+                 //       "Clicked popup menu item " + item.getTitle(),
+                   //     Toast.LENGTH_SHORT).show();
                 switch (item.getItemId()) {
                     case R.id.profile:
                         Log.d("profile","profile");
@@ -491,7 +496,7 @@ public class BaseActivity extends Activity {
                                         Players players=new Players();
                                         players.setName(matches.getJSONObject(i).getString("name"));
                                         players.setCountryName(matches.getJSONObject(i).getString("countryName"));
-                                        players.setId(1);
+                                        players.setSquadId(1);
                                         kkrPlayersList.add(players);
                                     }
 
@@ -525,7 +530,7 @@ public class BaseActivity extends Activity {
                                         Players players=new Players();
                                         players.setName(matches.getJSONObject(i).getString("name"));
                                         players.setCountryName(matches.getJSONObject(i).getString("countryName"));
-                                        players.setId(2);
+                                        players.setSquadId(2);
                                         srhPlayersList.add(players);
                                     }
 
@@ -560,7 +565,7 @@ public class BaseActivity extends Activity {
                                         Players players=new Players();
                                         players.setName(matches.getJSONObject(i).getString("name"));
                                         players.setCountryName(matches.getJSONObject(i).getString("countryName"));
-                                        players.setId(3);
+                                        players.setSquadId(3);
                                         kkrPlayersList.add(players);
                                     }
 
@@ -594,7 +599,7 @@ public class BaseActivity extends Activity {
                                         Players players=new Players();
                                         players.setName(matches.getJSONObject(i).getString("name"));
                                         players.setCountryName(matches.getJSONObject(i).getString("countryName"));
-                                        players.setId(4);
+                                        players.setSquadId(4);
                                         ddPlayersList.add(players);
                                     }
 
@@ -629,7 +634,7 @@ public class BaseActivity extends Activity {
                                         Players players=new Players();
                                         players.setName(matches.getJSONObject(i).getString("name"));
                                         players.setCountryName(matches.getJSONObject(i).getString("countryName"));
-                                        players.setId(6);
+                                        players.setSquadId(6);
                                         srhPlayersList.add(players);
                                     }
 
@@ -664,7 +669,7 @@ public class BaseActivity extends Activity {
                                         Players players=new Players();
                                         players.setName(matches.getJSONObject(i).getString("name"));
                                         players.setCountryName(matches.getJSONObject(i).getString("countryName"));
-                                        players.setId(5);
+                                        players.setSquadId(5);
                                         srhPlayersList.add(players);
                                     }
 
@@ -699,7 +704,7 @@ public class BaseActivity extends Activity {
                                         Players players=new Players();
                                         players.setName(matches.getJSONObject(i).getString("name"));
                                         players.setCountryName(matches.getJSONObject(i).getString("countryName"));
-                                        players.setId(7);
+                                        players.setSquadId(7);
                                         srhPlayersList.add(players);
                                     }
 
@@ -734,7 +739,7 @@ public class BaseActivity extends Activity {
                                         Players players=new Players();
                                         players.setName(matches.getJSONObject(i).getString("name"));
                                         players.setCountryName(matches.getJSONObject(i).getString("countryName"));
-                                        players.setId(8);
+                                        players.setSquadId(8);
                                         rpsPlayersList.add(players);
                                     }
 
@@ -760,6 +765,87 @@ public class BaseActivity extends Activity {
     }
 
 
+    public void selectTeam(long currentMatchId){
+
+        Matches currentMatch = HomeActivity.getMatchById(currentMatchId);
+        final long matchId= currentMatchId;
+        final int homeTeamId = Matches.getId(currentMatch.getHomeTeam());
+        final int awayTeamId = Matches.getId(currentMatch.getAwayTeam());
+        final Matches currentMatchFinal=currentMatch;
+
+        String urlRps = "http://ec2-52-11-41-143.us-west-2.compute.amazonaws.com/v1/players/"+homeTeamId;
+        MyAsyncTask asyncTaskRps =new MyAsyncTask(new AsyncResponse() {
+
+            List<Players> playersList=new ArrayList<Players>();
+            @Override
+            public void processFinish(Object output) {
+                if(output==null){
+                    return;
+                }
+                Log.d(output.toString(),"Response From Asynchronous task:");
+                try {
+                    JSONObject jsonObject = (JSONObject) output;
+                    JSONArray playersJson = (JSONArray) jsonObject.get("players");
+
+                    for (int i=0; i<playersJson.length(); i++) {
+
+                        Players players=new Players();
+                        players.setName(playersJson.getJSONObject(i).getString("name"));
+                        players.setCountryName(playersJson.getJSONObject(i).getString("countryName"));
+                        players.setId(playersJson.getJSONObject(i).getLong("id"));
+                        players.setMatchId(matchId);
+                        players.setSquadName(currentMatchFinal.getHomeTeam());
+                        players.setHomeSquad(true);
+                        playersList.add(players);
+                    }
+
+                    String urlRps = "http://ec2-52-11-41-143.us-west-2.compute.amazonaws.com/v1/players/"+awayTeamId;
+                    MyAsyncTask asyncTaskRps =new MyAsyncTask(new AsyncResponse() {
+
+                        @Override
+                        public void processFinish(Object output) {
+                            List<Players> squad2Players=new ArrayList<>();
+                            if(output==null){
+                                return;
+                            }
+                            Log.d(output.toString(),"Response From Asynchronous task:");
+                            try {
+                                JSONObject jsonObject = (JSONObject) output;
+                                JSONArray matches = (JSONArray) jsonObject.get("players");
+
+                                for (int i=0; i<matches.length(); i++) {
+
+                                    Players players=new Players();
+                                    players.setName(matches.getJSONObject(i).getString("name"));
+                                    players.setCountryName(matches.getJSONObject(i).getString("countryName"));
+                                    players.setId(matches.getJSONObject(i).getLong("id"));
+                                    players.setMatchId(matchId);
+                                    players.setSquadName(currentMatchFinal.getAwayTeam());
+                                    squad2Players.add(players);
+                                }
+
+                                Intent intent = new Intent(BaseActivity.this, PickTeamActivity.class);
+                                intent.putExtra("squad1Players",(Serializable)playersList);
+                                intent.putExtra("squad2Players",(Serializable)squad2Players);
+                                startActivity(intent);
+
+                                Log.d(matches.getString(0),"players");
+                            }
+                            catch (Exception ex){
+
+                            }
+                        }
+                    });
+                    asyncTaskRps.execute(new Object[] { urlRps,"GET"});
+
+                }
+                catch (Exception ex){
+
+                }
+            }
+        });
+        asyncTaskRps.execute(new Object[] { urlRps,"GET"});
+    }
 
 
 }

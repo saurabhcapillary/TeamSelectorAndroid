@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
+import saurabhkmr.teamselector.app.CurrentMatchActivity;
 import saurabhkmr.teamselector.app.R;
 import saurabhkmr.teamselector.app.SquadsActivity;
 import saurabhkmr.teamselector.app.models.Players;
@@ -14,16 +15,16 @@ import saurabhkmr.teamselector.app.models.Players;
 import java.util.List;
 
 /**
- * Created by saurabhkmr on 27/3/16.
+ * Created by saurabhkmr on 10/4/16 @Capillary Tech
  */
-public class CustomSquadAdapter extends BaseAdapter {
+public class CurrentMatchAdapter extends BaseAdapter {
 
     List<Players> result;
     Context context;
     int [] imageId;
     private static LayoutInflater inflater=null;
 
-    public CustomSquadAdapter(SquadsActivity mainActivity, List<Players> players) {
+    public CurrentMatchAdapter(CurrentMatchActivity mainActivity, List<Players> players) {
         // TODO Auto-generated constructor stub
         result=players;
         context=mainActivity;
@@ -63,9 +64,13 @@ public class CustomSquadAdapter extends BaseAdapter {
         holder.country=(TextView) rowView.findViewById(R.id.playerPoints);
 
         String playerName=result.get(position).getName();
-        String playerCountryName=result.get(position).getCountryName();
+        long playerPoints=result.get(position).getPoints();
+        boolean isCaptain=result.get(position).isCaptain();
+        if(isCaptain){
+            playerName=playerName+"(c)";
+        }
         holder.name.setText(playerName);
-        holder.country.setText(playerCountryName);
+        holder.country.setText(playerPoints+" points");
 
         rowView.setOnClickListener(new View.OnClickListener() {
             @Override

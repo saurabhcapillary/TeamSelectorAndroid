@@ -52,9 +52,10 @@ public class LeaderboardActivity extends BaseActivity {
                         user.setId(userPoints.getJSONObject(i).getLong("userId"));
                         user.setPoints(userPoints.getJSONObject(i).getLong("points"));
                         user.setName(userPoints.getJSONObject(i).getString("name"));
+                        user.setRank(userPoints.getJSONObject(i).getInt("rank"));
                         users.add(user);
                     }
-                    lv.setAdapter(new UserPointsAdapter(LeaderboardActivity.this,users));
+                    lv.setAdapter(new UserPointsAdapter(null,LeaderboardActivity.this,users));
 
                     Log.d(userPoints.getString(0),"players");
                 }
