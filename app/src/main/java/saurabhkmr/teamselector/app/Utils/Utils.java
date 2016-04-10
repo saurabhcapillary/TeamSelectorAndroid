@@ -48,6 +48,10 @@ public class Utils {
         return val;
     }
 
+    public static  long getTimestamp(Date date){
+        return date.getTime();
+    }
+
     public static void setImage(ImageView imageView, String squadName){
         switch (squadName.toLowerCase()){
             case "mi":

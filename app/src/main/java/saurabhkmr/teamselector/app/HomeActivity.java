@@ -16,6 +16,7 @@ import saurabhkmr.teamselector.app.requests.MyAsyncTask;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -69,14 +70,11 @@ public class HomeActivity extends BaseActivity {
         match2Button=(Button)findViewById(R.id.btn_SelectTeam2);
         SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", 0);
         userId=pref.getLong("id",0);
-        teamSelected();
         getMatches();
     }
 
     private void teamSelected() {
         try{
-            Bundle extras = getIntent().getExtras();
-            matchId = (long) extras.getSerializable("matchId");
 
             String urlRps = "http://ec2-52-11-41-143.us-west-2.compute.amazonaws.com/v1/" +
                     "team_select?user_id="+userId+"&match_id="+matchId;
@@ -104,12 +102,11 @@ public class HomeActivity extends BaseActivity {
                             playersList.add(players);
                         }
                         long match1buttonTag= (long) match1Button.getTag();
-                        long match2buttonTag= (long) match2Button.getTag();
-                        if(match1buttonTag==matchId){
+                        if(match1buttonTag==matchId && playersList.size()>5){
                             match1Button.setText("Show Team");
                         }
-
-                        if(match2buttonTag==matchId){
+                        long match2buttonTag= (long) match2Button.getTag();
+                        if(match2buttonTag==matchId && playersList.size()>5){
                             match2Button.setText("Show Team");
                         }
 
@@ -131,7 +128,7 @@ public class HomeActivity extends BaseActivity {
 
     public  String getDateHourMinSecond(long startTime,long matchId) {
 
-        long endTime=System.currentTimeMillis();
+        long endTime=Utils.getTimestamp(new Date());
         this.matchId=matchId;
         long diff = startTime-endTime;
         Log.e("day", "miliday"+diff);
@@ -142,7 +139,7 @@ public class HomeActivity extends BaseActivity {
         long hours   =  ((diff / (1000*60*60)) % 24);
         Log.e("hour", "miliday"+hours);
         long days = (int)((diff / (1000*60*60*24)) % 365);
-        if(hours<=0){
+        if(hours<=0 && minutes <30){
             startsIn.setText("Match Started");
             Utils.setCurrentMatchId(matchId);
             return "";
@@ -177,9 +174,9 @@ public class HomeActivity extends BaseActivity {
                             String squad1 = matches.getJSONObject(i).getString("homeTeam");
                             String squad2 = matches.getJSONObject(i).getString("awayTeam");
 
-                            if(id==matchId){
-                                match1Button.setText("Show Team");
-                            }
+                           // if(id==matchId){
+                             //   match1Button.setText("Show Team");
+                           // }
                             match1Squad1TextViewHome.setText(squad1);
                             match1Squad2TextViewHome.setText(squad2);
                             match1VsTextView.setText("vs");
@@ -198,9 +195,9 @@ public class HomeActivity extends BaseActivity {
                             match2VsTextView.setText("vs");
                             Utils.setImage(match2Squad1ImageView, squad1);
                             Utils.setImage(match2Squad2ImageView, squad2);
-                            if(id==matchId){
-                                match2Button.setText("Show Team");
-                            }
+                          //  if(id==matchId){
+                            //    match2Button.setText("Show Team");
+                          //  }
                             match2Button.setVisibility(View.VISIBLE);
                             match2Button.setTag(id);
                         }
@@ -211,6 +208,7 @@ public class HomeActivity extends BaseActivity {
                         match.setVenue(matches.getJSONObject(i).getString("venue"));
                         match.setDate(Utils.parseDate(matches.getJSONObject(i).getString("date")));
                         matchesList.add(match);
+                        teamSelected();
                     }
 
                     Log.d(matches.getString(0), "matches");
@@ -285,6 +283,9 @@ public class HomeActivity extends BaseActivity {
                 try {
                     JSONObject jsonObject = (JSONObject) output;
                     JSONArray matches = (JSONArray) jsonObject.get("matchPoints");
+                    if(matches.length()==0){
+                        return;
+                    }
 
                     for (int i=0; i<matches.length(); i++) {
 
