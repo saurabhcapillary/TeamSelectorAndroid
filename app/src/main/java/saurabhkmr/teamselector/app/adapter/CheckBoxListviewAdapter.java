@@ -145,7 +145,7 @@ public class CheckBoxListviewAdapter extends BaseAdapter  {
             }
         }
         else {
-            if(selectedPlayers.contains(squad1Players.get(position))) {
+            if(selectedPlayers.contains(squad2Players.get(position))) {
                // Toast.makeText(context, "Players selected count "+selectedPlayers.size(), Toast.LENGTH_LONG).show();
                 selectedPlayers.remove(squad2Players.get(position));
             }

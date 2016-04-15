@@ -71,7 +71,7 @@ public class Matches implements Serializable {
             case "rcb":
                 return 3;
             case "srh":
-                break;
+                return 2;
             case "kx1p":
                 return 5;
             case "kkr":

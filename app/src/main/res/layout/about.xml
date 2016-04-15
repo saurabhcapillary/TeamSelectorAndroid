@@ -32,19 +32,19 @@
               android:layout_width="fill_parent"
               android:layout_height="wrap_content"
               android:layout_marginBottom="16dp"
-              android:text="Wickets \n 1. per: 10 \n 2. wickets >=2: 10 \n 3. wickets >=3: 30 \n 4. wickets >=4: 50 "
+              android:text="Wickets \n 1. per: 10 \n 2. wickets =2: 20 \n 3. wickets =3: 50 \n 4. wickets =4: 80 \n 5. wickets > 4: 100 "
               android:gravity="left"
               android:textSize="20dp"
               android:textColor="@color/white"/>
 
-    <TextView android:id="@+id/rulesCatchStumps"
+    <!--<TextView android:id="@+id/rulesCatchStumps"
               android:layout_width="fill_parent"
               android:layout_height="wrap_content"
               android:layout_marginBottom="16dp"
               android:text="Catches and Stumps \n 1. per: 10"
               android:gravity="left"
               android:textSize="20dp"
-              android:textColor="@color/white"/>
+              android:textColor="@color/white"/> -->
 
     <TextView android:id="@+id/rulesEconRate"
               android:layout_width="fill_parent"
