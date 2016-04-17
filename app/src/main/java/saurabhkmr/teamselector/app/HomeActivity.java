@@ -73,11 +73,11 @@ public class HomeActivity extends BaseActivity {
         getMatches();
     }
 
-    private void teamSelected() {
+    private void teamSelected1(long currMatchId) {
         try{
 
             String urlRps = "http://ec2-52-11-41-143.us-west-2.compute.amazonaws.com/v1/" +
-                    "team_select?user_id="+userId+"&match_id="+matchId;
+                    "team_select?user_id="+userId+"&match_id="+currMatchId;
             MyAsyncTask asyncTaskRps =new MyAsyncTask(new AsyncResponse() {
 
                 @Override
@@ -105,8 +105,52 @@ public class HomeActivity extends BaseActivity {
                         if(match1buttonTag==matchId && playersList.size()>5){
                             match1Button.setText("Show Team");
                         }
+
+                        Log.d(matches.getString(0),"players");
+                    }
+                    catch (Exception ex){
+
+                    }
+                }
+            });
+            asyncTaskRps.execute(new Object[] { urlRps,"GET"});
+
+        }
+        catch (Exception ex){
+
+        }
+    }
+
+    private void teamSelected2(long currMatchId) {
+        try{
+
+            String urlRps = "http://ec2-52-11-41-143.us-west-2.compute.amazonaws.com/v1/" +
+                    "team_select?user_id="+userId+"&match_id="+currMatchId;
+            MyAsyncTask asyncTaskRps =new MyAsyncTask(new AsyncResponse() {
+
+                @Override
+                public void processFinish(Object output) {
+                    List<Players> playersList=new ArrayList<>();
+                    if(output==null){
+                        return;
+                    }
+                    Log.d(output.toString(),"Response From Asynchronous task:");
+                    try {
+                        JSONObject jsonObject = (JSONObject) output;
+                        JSONArray matches = (JSONArray) jsonObject.get("matchPoints");
+
+                        for (int i=0; i<matches.length(); i++) {
+
+                            Players players=new Players();
+                            players.setName(matches.getJSONObject(i).getString("playerName"));
+                            players.setId(matches.getJSONObject(i).getLong("id"));
+                            players.setSquadId(matches.getJSONObject(i).getLong("squad"));
+                            players.setCaptain(matches.getJSONObject(i).getBoolean("captain"));
+                            players.setPoints(matches.getJSONObject(i).getLong("points"));
+                            playersList.add(players);
+                        }
                         long match2buttonTag= (long) match2Button.getTag();
-                        if(match2buttonTag==matchId && playersList.size()>5){
+                        if(match2buttonTag==matchId+1 && playersList.size()>5){
                             match2Button.setText("Show Team");
                         }
 
@@ -184,7 +228,7 @@ public class HomeActivity extends BaseActivity {
                             Utils.setImage(match1Squad2ImageView, squad2);
                             match1Button.setVisibility(View.VISIBLE);
                             match1Button.setTag(id);
-
+                            teamSelected1(id);
                         }
                         if (i == 1) {
                             long id=matches.getJSONObject(i).getLong("id");
@@ -200,6 +244,7 @@ public class HomeActivity extends BaseActivity {
                           //  }
                             match2Button.setVisibility(View.VISIBLE);
                             match2Button.setTag(id);
+                            teamSelected2(id);
                         }
                         Matches match = new Matches();
                         match.setAwayTeam(matches.getJSONObject(i).getString("awayTeam"));
@@ -208,7 +253,7 @@ public class HomeActivity extends BaseActivity {
                         match.setVenue(matches.getJSONObject(i).getString("venue"));
                         match.setDate(Utils.parseDate(matches.getJSONObject(i).getString("date")));
                         matchesList.add(match);
-                        teamSelected();
+
                     }
 
                     Log.d(matches.getString(0), "matches");

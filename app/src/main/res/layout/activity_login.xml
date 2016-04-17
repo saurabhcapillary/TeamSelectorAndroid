@@ -71,7 +71,7 @@
               android:layout_marginBottom="24dp"
               android:text="No account yet? Create one"
               android:gravity="center"
-              android:textSize="16dip"
+              android:textSize="20dp"
               android:textColor="@color/white"
                android:onClick="register"/>
 
@@ -93,7 +93,7 @@
               android:layout_marginBottom="24dp"
               android:text="Error occurred"
               android:gravity="center"
-              android:textSize="16dip"
+              android:textSize="16dp"
               android:textColor="@color/red"
               android:visibility="invisible"/>
 

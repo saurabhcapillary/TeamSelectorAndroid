@@ -34,6 +34,39 @@ public class CheckBoxListviewAdapter extends BaseAdapter  {
         inflater = ( LayoutInflater )context.
                 getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         selectedPlayers=new ArrayList<>(11);
+        if(squad1Players.size()<squad2Players.size()){
+            equaliseSquad1(squad1Players,squad2Players);
+        }
+        else
+        {
+            equaliseSquad2(squad2Players,squad1Players);
+        }
+    }
+
+    private void equaliseSquad1(List<Players> squad1Players, List<Players> squad2Players) {
+        int size=squad2Players.size()-squad1Players.size();
+        Players defaultPlayers=new Players();
+        defaultPlayers.setMatchId(0);
+        defaultPlayers.setName("");
+        defaultPlayers.setCountryId(1);
+        defaultPlayers.setSquadId(0);
+        while (size>0){
+            squad1Players.add(defaultPlayers);
+            size --;
+        }
+    }
+
+    private void equaliseSquad2(List<Players> squad2Players, List<Players> squad1Players) {
+        int size=squad1Players.size()-squad2Players.size();
+        Players defaultPlayers=new Players();
+        defaultPlayers.setMatchId(0);
+        defaultPlayers.setName("");
+        defaultPlayers.setCountryId(1);
+        defaultPlayers.setSquadId(0);
+        while (size>0){
+            squad2Players.add(defaultPlayers);
+            size--;
+        }
     }
 
     @Override
@@ -106,18 +139,34 @@ public class CheckBoxListviewAdapter extends BaseAdapter  {
         } else {
             holder = (Holder) convertView.getTag();
         }
-        holder.playerSquad1NameCheckBox.setTag(position);
-        holder.playerSquad1NameCheckBox.setVisibility(View.VISIBLE);
-        if(squad1Players.size()>position) {
-            holder.playerSquad1NameCheckBox.setText(squad1Players.get(position).getName());// This line is important.
-            holder.playerSquad1NameCheckBox.setChecked(squad1Players.get(position).isSelected());
+        try {
+            if(squad1Players.get(position).getName()==""){
+                holder.playerSquad1NameCheckBox.setTag(position);
+                holder.playerSquad1NameCheckBox.setVisibility(View.INVISIBLE);
+            }
+            else {
+                holder.playerSquad1NameCheckBox.setTag(position);
+                holder.playerSquad1NameCheckBox.setVisibility(View.VISIBLE);
+                holder.playerSquad1NameCheckBox.setText(squad1Players.get(position).getName());// This line is important.
+                holder.playerSquad1NameCheckBox.setChecked(squad1Players.get(position).isSelected());
+            }
         }
-        holder.playerSquad2NameCheckBox.setTag(position);
-        holder.playerSquad2NameCheckBox.setVisibility(View.VISIBLE);
-        if(squad2Players.size()>position) {
-            holder.playerSquad2NameCheckBox.setText(squad2Players.get(position).getName());
-            holder.playerSquad2NameCheckBox.setChecked(squad2Players.get(position).isSelected());
+        catch (Exception ex){}
+
+        try {
+
+            if(squad2Players.get(position).getName()==""){
+                holder.playerSquad2NameCheckBox.setTag(position);
+                holder.playerSquad2NameCheckBox.setVisibility(View.INVISIBLE);
+            }
+            else {
+                holder.playerSquad2NameCheckBox.setTag(position);
+                holder.playerSquad2NameCheckBox.setVisibility(View.VISIBLE);
+                holder.playerSquad2NameCheckBox.setText(squad2Players.get(position).getName());
+                holder.playerSquad2NameCheckBox.setChecked(squad2Players.get(position).isSelected());
+            }
         }
+        catch (Exception ex){}
         return convertView;
     }
 

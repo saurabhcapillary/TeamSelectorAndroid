@@ -1,5 +1,6 @@
 package saurabhkmr.teamselector.app;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -31,6 +32,8 @@ public class BaseActivity extends Activity {
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater menuInflater = getMenuInflater();
         menuInflater.inflate(R.menu.popup, menu);
+        ActionBar actionBar = getActionBar();
+        
         return super.onCreateOptionsMenu(menu);
     }
 
