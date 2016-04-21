@@ -183,7 +183,7 @@ public class HomeActivity extends BaseActivity {
         long hours   =  ((diff / (1000*60*60)) % 24);
         Log.e("hour", "miliday"+hours);
         long days = (int)((diff / (1000*60*60*24)) % 365);
-        if(hours<=0 && minutes <30){
+        if(hours<=0 && minutes <5){
             startsIn.setText("Match Started");
             Utils.setCurrentMatchId(matchId);
             return "";
