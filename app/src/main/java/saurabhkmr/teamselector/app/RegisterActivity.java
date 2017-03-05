@@ -49,7 +49,7 @@ public class RegisterActivity extends Activity {
         errorTextView.setVisibility(View.INVISIBLE);
         errorTextView.setTextColor(getResources().getColor(R.color.red));
         errorTextView.setText("");
-        String url = "http://ec2-52-11-41-143.us-west-2.compute.amazonaws.com/v1/user/";
+        String url = "http://ec2-52-37-151-238.us-west-2.compute.amazonaws.com/v1/user/";
         JSONObject jsonObject=new JSONObject();
         String email=emailText.getText().toString();
         String password=passwordText.getText().toString().trim();

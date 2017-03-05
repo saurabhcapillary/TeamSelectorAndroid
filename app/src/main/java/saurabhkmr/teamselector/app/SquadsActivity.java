@@ -40,27 +40,27 @@ public class SquadsActivity extends BaseActivity {
             int val=(int)squadId;
             switch (val){
                 case 6:
-                    linearLayout.setBackgroundColor(Color.BLUE);
+                    linearLayout.setBackgroundDrawable(getResources().getDrawable(R.drawable.blue));
                     squadImageView.setImageResource(R.drawable.mi);
                     break;
                 case 4:
-                    linearLayout.setBackgroundColor(Color.RED);
+                    linearLayout.setBackgroundDrawable(getResources().getDrawable(R.drawable.red));
                     squadImageView.setImageResource(R.drawable.dd);
                     break;
                 case 3:
-                    linearLayout.setBackgroundColor(Color.RED);
+                    linearLayout.setBackgroundDrawable(getResources().getDrawable(R.drawable.red));
                     squadImageView.setImageResource(R.drawable.rcb);
                     break;
                 case 2:
-                    linearLayout.setBackgroundColor(Color.parseColor("#F88017"));
+                    linearLayout.setBackgroundDrawable(getResources().getDrawable(R.drawable.orange));
                     squadImageView.setImageResource(R.drawable.srh);
                     android.view.ViewGroup.MarginLayoutParams params2 = (android.view.ViewGroup.MarginLayoutParams)
                         squadImageView.getLayoutParams();
-                    params2.leftMargin=300;
+                    params2.leftMargin=120;
                     squadImageView.setLayoutParams(params2);
                     break;
                 case 5:
-                    linearLayout.setBackgroundColor(Color.parseColor("#EE0000"));
+                    linearLayout.setBackgroundDrawable(getResources().getDrawable(R.drawable.red));
                     squadImageView.setImageResource(R.drawable.kx1p);
                     android.view.ViewGroup.MarginLayoutParams params3 = (android.view.ViewGroup.MarginLayoutParams)
                         squadImageView.getLayoutParams();
@@ -68,11 +68,11 @@ public class SquadsActivity extends BaseActivity {
                     squadImageView.setLayoutParams(params3);
                     break;
                 case 1:
-                    linearLayout.setBackgroundColor(Color.parseColor("#2E0854"));
+                    linearLayout.setBackgroundDrawable(getResources().getDrawable(R.drawable.voilet));
                     squadImageView.setImageResource(R.drawable.kkr);
                     break;
                 case 7:
-                    linearLayout.setBackgroundColor(Color.parseColor("#ffa500"));
+                    linearLayout.setBackgroundDrawable(getResources().getDrawable(R.drawable.orange));
                     squadImageView.setImageResource(R.mipmap.gl);
                     android.view.ViewGroup.MarginLayoutParams params1 = (android.view.ViewGroup.MarginLayoutParams)
                         squadImageView.getLayoutParams();
@@ -81,7 +81,7 @@ public class SquadsActivity extends BaseActivity {
 
                     break;
                 case 8:
-                    linearLayout.setBackgroundColor(Color.parseColor("#FAAFBE"));
+                    linearLayout.setBackgroundDrawable(getResources().getDrawable(R.drawable.rps_bg));
                     squadImageView.setImageResource(R.mipmap.rps);
                       android.view.ViewGroup.MarginLayoutParams params = (android.view.ViewGroup.MarginLayoutParams)
                         squadImageView.getLayoutParams();

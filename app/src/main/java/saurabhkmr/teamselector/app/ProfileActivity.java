@@ -53,7 +53,7 @@ public class ProfileActivity extends BaseActivity {
     }
 
     private void getPoints(long userId) {
-        String urlKkr = "http://ec2-52-11-41-143.us-west-2.compute.amazonaws.com/v1/user/points/"+userId;
+        String urlKkr = "http://ec2-52-37-151-238.us-west-2.compute.amazonaws.com/v1/user/points/"+userId;
         MyAsyncTask asyncTaskKkr =new MyAsyncTask(new AsyncResponse() {
 
             List<Players> kkrPlayersList=new ArrayList<Players>();

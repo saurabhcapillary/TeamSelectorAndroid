@@ -68,7 +68,7 @@ public class LoginActivity extends Activity {
     public void login(View view) throws JSONException {
         errorTextView.setVisibility(View.INVISIBLE);
         errorTextView.setText("");
-        String url = "http://ec2-52-11-41-143.us-west-2.compute.amazonaws.com/v1/user/login";
+        String url = "http://ec2-52-37-151-238.us-west-2.compute.amazonaws.com/v1/user/login";
         JSONObject jsonObject=new JSONObject();
         String nickName=usernameText.getText().toString();
         String password=passwordText.getText().toString();

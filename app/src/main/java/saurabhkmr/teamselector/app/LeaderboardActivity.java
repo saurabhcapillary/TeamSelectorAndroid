@@ -36,7 +36,7 @@ public class LeaderboardActivity extends BaseActivity {
 
     public void getUsersPoints() {
         users=new ArrayList<>();
-        String urlKkr = "http://ec2-52-11-41-143.us-west-2.compute.amazonaws.com/v1/user/points";
+        String urlKkr = "http://ec2-52-37-151-238.us-west-2.compute.amazonaws.com/v1/user/points";
         MyAsyncTask asyncTaskKkr =new MyAsyncTask(new AsyncResponse() {
             @Override
             public void processFinish(Object output) {

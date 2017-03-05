@@ -14,7 +14,7 @@
             android:paddingLeft="24dp"
             android:paddingRight="24dp">
 
-        <ImageView android:src="@drawable/ipl_logo"
+        <ImageView android:src="@drawable/stumps"
                    android:layout_width="wrap_content"
                    android:layout_height="200dp"
                    android:layout_marginBottom="10dp"

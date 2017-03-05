@@ -41,7 +41,7 @@ public class CurrentMatchLeaderBoard extends BaseActivity {
         if (matchId == 0) {
             leaderViewHeader.setText("Match not started");
         } else {
-            String urlKkr = "http://ec2-52-11-41-143.us-west-2.compute.amazonaws.com/v1/user/points?match_id="+matchId;
+            String urlKkr = "http://ec2-52-37-151-238.us-west-2.compute.amazonaws.com/v1/user/points?match_id="+matchId;
             MyAsyncTask asyncTaskKkr = new MyAsyncTask(new AsyncResponse() {
                 @Override
                 public void processFinish(Object output) {

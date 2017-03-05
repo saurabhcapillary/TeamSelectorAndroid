@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="AppTheme" parent="android:Theme.Holo.Light">
+    <style name="AppTheme" parent="android:Theme.Holo.Light.DarkActionBar">
         <item name="android:popupMenuStyle">@style/popupMenuStyle</item>
     </style>
     <style name="popupMenuStyle" parent="@android:style/Widget.PopupMenu">
-        <item name="android:panelBackground">@color/Steel_Blue</item>
+        <item name="android:panelBackground">@drawable/bg</item>
     </style>
 
 </resources>

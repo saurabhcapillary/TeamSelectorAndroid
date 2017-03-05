@@ -4,7 +4,7 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:fitsSystemWindows="true"
-        android:background="@color/Steel_Blue">
+        android:background="@drawable/bg">
 
     <LinearLayout
             android:orientation="vertical"
@@ -14,7 +14,7 @@
             android:paddingLeft="24dp"
             android:paddingRight="24dp">
 
-        <ImageView android:src="@drawable/ipl_logo"
+        <ImageView android:src="@drawable/stumps"
                    android:layout_width="wrap_content"
                    android:layout_height="72dp"
                    android:layout_marginBottom="20dp"

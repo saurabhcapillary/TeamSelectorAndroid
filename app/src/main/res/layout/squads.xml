@@ -4,12 +4,12 @@
               android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
-              android:background="@color/Steel_Blue"
+              android:background="@drawable/bg"
               android:paddingTop="0dp"
               android:paddingLeft="0dp"
               android:paddingRight="0dp">
 
-    <ImageView android:src="@drawable/ipl_logo"
+    <ImageView android:src="@drawable/stumps"
                android:layout_width="wrap_content"
                android:layout_marginLeft="120dp"
                android:layout_height="50dp"

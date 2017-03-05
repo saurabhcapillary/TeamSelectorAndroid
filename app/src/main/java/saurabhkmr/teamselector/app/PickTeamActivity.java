@@ -85,7 +85,7 @@ public class PickTeamActivity extends BaseActivity {
                 final JSONArray jsonArray=new JSONArray();
 
                 JSONObject finalJsonObject=new JSONObject();
-                String url = "http://ec2-52-11-41-143.us-west-2.compute.amazonaws.com/v1/team_select/";
+                String url = "http://ec2-52-37-151-238.us-west-2.compute.amazonaws.com/v1/team_select/";
                     try {
                         for (Players players: selectedPlayers) {
                             JSONObject jsonObject=new JSONObject();

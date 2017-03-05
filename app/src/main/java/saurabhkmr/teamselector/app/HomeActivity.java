@@ -76,7 +76,7 @@ public class HomeActivity extends BaseActivity {
     private void teamSelected1(long currMatchId) {
         try{
 
-            String urlRps = "http://ec2-52-11-41-143.us-west-2.compute.amazonaws.com/v1/" +
+            String urlRps = "http://ec2-52-37-151-238.us-west-2.compute.amazonaws.com/v1/" +
                     "team_select?user_id="+userId+"&match_id="+currMatchId;
             MyAsyncTask asyncTaskRps =new MyAsyncTask(new AsyncResponse() {
 
@@ -124,7 +124,7 @@ public class HomeActivity extends BaseActivity {
     private void teamSelected2(long currMatchId) {
         try{
 
-            String urlRps = "http://ec2-52-11-41-143.us-west-2.compute.amazonaws.com/v1/" +
+            String urlRps = "http://ec2-52-37-151-238.us-west-2.compute.amazonaws.com/v1/" +
                     "team_select?user_id="+userId+"&match_id="+currMatchId;
             MyAsyncTask asyncTaskRps =new MyAsyncTask(new AsyncResponse() {
 
@@ -170,11 +170,11 @@ public class HomeActivity extends BaseActivity {
         }
     }
 
-    public  String getDateHourMinSecond(long startTime,long matchId) {
+    public  String getDateHourMinSecond(long matchTime,long matchId) {
 
-        long endTime=Utils.getTimestamp(new Date());
+        long currentTime=Utils.getTimestamp(new Date());
         this.matchId=matchId;
-        long diff = startTime-endTime;
+        long diff = matchTime-currentTime;
         Log.e("day", "miliday"+diff);
         long seconds =  (diff / 1000) % 60 ;
         Log.e("second", "miliday"+seconds);
@@ -195,7 +195,7 @@ public class HomeActivity extends BaseActivity {
     }
     public void getMatches(){
 
-        String url = "http://ec2-52-11-41-143.us-west-2.compute.amazonaws.com/v1/matches?seriesName=ipl&upcoming=true";
+        String url = "http://ec2-52-37-151-238.us-west-2.compute.amazonaws.com/v1/matches?seriesName=ipl&upcoming=true";
 
         MyAsyncTask asyncTask =new MyAsyncTask(new AsyncResponse() {
 
@@ -255,8 +255,31 @@ public class HomeActivity extends BaseActivity {
                         matchesList.add(match);
 
                     }
+                    if(matches.length()>0){
+                        Log.d(matches.getString(0), "matches");
+                    }
+                    else {
 
-                    Log.d(matches.getString(0), "matches");
+                        long time = Utils.getTime("2017-04-05T20:00:00Z");
+                        long id=1;
+                        String countDown = getDateHourMinSecond(time,id);
+                        countDownTxtView.setText(countDown);
+                        String squad1 = "Srh";
+                        String squad2 = "Rcb";
+
+                        // if(id==matchId){
+                        //   match1Button.setText("Show Team");
+                        // }
+                        match1Squad1TextViewHome.setText(squad1);
+                        match1Squad2TextViewHome.setText(squad2);
+                        match1VsTextView.setText("vs");
+                        Utils.setImage(match1Squad1ImageView, squad1);
+                        Utils.setImage(match1Squad2ImageView, squad2);
+                        match1Button.setVisibility(View.VISIBLE);
+                        match1Button.setTag(id);
+                        teamSelected1(id);
+                    }
+
                 } catch (Exception ex) {
                     Log.d("something wrong happened", ex.getMessage());
                 }
@@ -314,7 +337,7 @@ public class HomeActivity extends BaseActivity {
 
     public void showSelectedPlayers(long currentMatchId){
 
-        String urlRps = "http://ec2-52-11-41-143.us-west-2.compute.amazonaws.com/v1/" +
+        String urlRps = "http://ec2-52-37-151-238.us-west-2.compute.amazonaws.com/v1/" +
                 "team_select?user_id="+userId+"&match_id="+currentMatchId;
         MyAsyncTask asyncTaskRps =new MyAsyncTask(new AsyncResponse() {
 

@@ -61,7 +61,7 @@ public class CurrentMatchActivity extends BaseActivity {
 
     private void resetAndSelectTeam() {
         try{
-            String urlRps = "http://ec2-52-11-41-143.us-west-2.compute.amazonaws.com/v1/" +
+            String urlRps = "http://ec2-52-37-151-238.us-west-2.compute.amazonaws.com/v1/" +
                     "team_select?user_id="+userId+"&match_id="+matchId;
             MyAsyncTask asyncTaskRps =new MyAsyncTask(new AsyncResponse() {
 

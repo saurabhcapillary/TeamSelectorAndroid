@@ -81,7 +81,7 @@ public class BaseActivity extends Activity {
             case R.id.matches:
                 Log.d("matches","matches");
 
-                String url = "http://ec2-52-11-41-143.us-west-2.compute.amazonaws.com/v1/matches?seriesName=ipl";
+                String url = "http://ec2-52-37-151-238.us-west-2.compute.amazonaws.com/v1/matches?seriesName=ipl";
                 MyAsyncTask asyncTask =new MyAsyncTask(new AsyncResponse() {
 
                     List<Matches> matchesList=new ArrayList<Matches>();
@@ -121,7 +121,7 @@ public class BaseActivity extends Activity {
             case R.id.kkr:
                 Log.d("kkr","kkr");
 
-                String urlKkr = "http://ec2-52-11-41-143.us-west-2.compute.amazonaws.com/v1/players/1";
+                String urlKkr = "http://ec2-52-37-151-238.us-west-2.compute.amazonaws.com/v1/players/1";
                 MyAsyncTask asyncTaskKkr =new MyAsyncTask(new AsyncResponse() {
 
                     List<Players> kkrPlayersList=new ArrayList<Players>();
@@ -158,7 +158,7 @@ public class BaseActivity extends Activity {
                 return true;
             case R.id.srh:
                 Log.d("squads","squads");
-                String urlSrh = "http://ec2-52-11-41-143.us-west-2.compute.amazonaws.com/v1/players/2";
+                String urlSrh = "http://ec2-52-37-151-238.us-west-2.compute.amazonaws.com/v1/players/2";
                 MyAsyncTask asyncTaskSrh =new MyAsyncTask(new AsyncResponse() {
 
                     List<Players> srhPlayersList=new ArrayList<Players>();
@@ -196,7 +196,7 @@ public class BaseActivity extends Activity {
                 return true;
             case R.id.rcb:
                 Log.d("squads","squads");
-                String urlRcb = "http://ec2-52-11-41-143.us-west-2.compute.amazonaws.com/v1/players/3";
+                String urlRcb = "http://ec2-52-37-151-238.us-west-2.compute.amazonaws.com/v1/players/3";
                 MyAsyncTask asyncTaskRcb =new MyAsyncTask(new AsyncResponse() {
 
                     List<Players> kkrPlayersList=new ArrayList<Players>();
@@ -233,7 +233,7 @@ public class BaseActivity extends Activity {
                 return true;
             case R.id.dd:
                 Log.d("squads","squads");
-                String urlDd = "http://ec2-52-11-41-143.us-west-2.compute.amazonaws.com/v1/players/4";
+                String urlDd = "http://ec2-52-37-151-238.us-west-2.compute.amazonaws.com/v1/players/4";
                 MyAsyncTask asyncTaskDd =new MyAsyncTask(new AsyncResponse() {
 
                     List<Players> ddPlayersList=new ArrayList<Players>();
@@ -271,7 +271,7 @@ public class BaseActivity extends Activity {
                 return true;
             case R.id.mi:
                 Log.d("squads","squads");
-                String urlMi = "http://ec2-52-11-41-143.us-west-2.compute.amazonaws.com/v1/players/6";
+                String urlMi = "http://ec2-52-37-151-238.us-west-2.compute.amazonaws.com/v1/players/6";
                 MyAsyncTask asyncTaskMi =new MyAsyncTask(new AsyncResponse() {
 
                     List<Players> srhPlayersList=new ArrayList<Players>();
@@ -309,7 +309,7 @@ public class BaseActivity extends Activity {
                 return true;
             case R.id.kx1p:
                 Log.d("squads","squads");
-                String urlKX1P = "http://ec2-52-11-41-143.us-west-2.compute.amazonaws.com/v1/players/5";
+                String urlKX1P = "http://ec2-52-37-151-238.us-west-2.compute.amazonaws.com/v1/players/5";
                 MyAsyncTask asyncTaskKx1p =new MyAsyncTask(new AsyncResponse() {
 
                     List<Players> srhPlayersList=new ArrayList<Players>();
@@ -347,7 +347,7 @@ public class BaseActivity extends Activity {
                 return true;
             case R.id.gl:
                 Log.d("squads","squads");
-                String urlGl = "http://ec2-52-11-41-143.us-west-2.compute.amazonaws.com/v1/players/7";
+                String urlGl = "http://ec2-52-37-151-238.us-west-2.compute.amazonaws.com/v1/players/7";
                 MyAsyncTask asyncTaskGl =new MyAsyncTask(new AsyncResponse() {
 
                     List<Players> srhPlayersList=new ArrayList<Players>();
@@ -385,7 +385,7 @@ public class BaseActivity extends Activity {
                 return true;
             case R.id.rps:
                 Log.d("rps","rps");
-                String urlRps = "http://ec2-52-11-41-143.us-west-2.compute.amazonaws.com/v1/players/8";
+                String urlRps = "http://ec2-52-37-151-238.us-west-2.compute.amazonaws.com/v1/players/8";
                 MyAsyncTask asyncTaskRps =new MyAsyncTask(new AsyncResponse() {
 
                     List<Players> rpsPlayersList=new ArrayList<Players>();
@@ -446,7 +446,7 @@ public class BaseActivity extends Activity {
                     case R.id.matches:
                         Log.d("matches","matches");
 
-                        String url = "http://ec2-52-11-41-143.us-west-2.compute.amazonaws.com/v1/matches?seriesName=ipl";
+                        String url = "http://ec2-52-37-151-238.us-west-2.compute.amazonaws.com/v1/matches?seriesName=ipl";
                         MyAsyncTask asyncTask =new MyAsyncTask(new AsyncResponse() {
 
                             List<Matches> matchesList=new ArrayList<Matches>();
@@ -483,7 +483,7 @@ public class BaseActivity extends Activity {
                     case R.id.kkr:
                         Log.d("kkr","kkr");
 
-                        String urlKkr = "http://ec2-52-11-41-143.us-west-2.compute.amazonaws.com/v1/players/1";
+                        String urlKkr = "http://ec2-52-37-151-238.us-west-2.compute.amazonaws.com/v1/players/1";
                         MyAsyncTask asyncTaskKkr =new MyAsyncTask(new AsyncResponse() {
 
                             List<Players> kkrPlayersList=new ArrayList<Players>();
@@ -517,7 +517,7 @@ public class BaseActivity extends Activity {
                         return true;
                     case R.id.srh:
                         Log.d("squads","squads");
-                        String urlSrh = "http://ec2-52-11-41-143.us-west-2.compute.amazonaws.com/v1/players/2";
+                        String urlSrh = "http://ec2-52-37-151-238.us-west-2.compute.amazonaws.com/v1/players/2";
                         MyAsyncTask asyncTaskSrh =new MyAsyncTask(new AsyncResponse() {
 
                             List<Players> srhPlayersList=new ArrayList<Players>();
@@ -552,7 +552,7 @@ public class BaseActivity extends Activity {
                         return true;
                     case R.id.rcb:
                         Log.d("squads","squads");
-                        String urlRcb = "http://ec2-52-11-41-143.us-west-2.compute.amazonaws.com/v1/players/3";
+                        String urlRcb = "http://ec2-52-37-151-238.us-west-2.compute.amazonaws.com/v1/players/3";
                         MyAsyncTask asyncTaskRcb =new MyAsyncTask(new AsyncResponse() {
 
                             List<Players> kkrPlayersList=new ArrayList<Players>();
@@ -586,7 +586,7 @@ public class BaseActivity extends Activity {
                         return true;
                     case R.id.dd:
                         Log.d("squads","squads");
-                        String urlDd = "http://ec2-52-11-41-143.us-west-2.compute.amazonaws.com/v1/players/4";
+                        String urlDd = "http://ec2-52-37-151-238.us-west-2.compute.amazonaws.com/v1/players/4";
                         MyAsyncTask asyncTaskDd =new MyAsyncTask(new AsyncResponse() {
 
                             List<Players> ddPlayersList=new ArrayList<Players>();
@@ -621,7 +621,7 @@ public class BaseActivity extends Activity {
                         return true;
                     case R.id.mi:
                         Log.d("squads","squads");
-                        String urlMi = "http://ec2-52-11-41-143.us-west-2.compute.amazonaws.com/v1/players/6";
+                        String urlMi = "http://ec2-52-37-151-238.us-west-2.compute.amazonaws.com/v1/players/6";
                         MyAsyncTask asyncTaskMi =new MyAsyncTask(new AsyncResponse() {
 
                             List<Players> srhPlayersList=new ArrayList<Players>();
@@ -656,7 +656,7 @@ public class BaseActivity extends Activity {
                         return true;
                     case R.id.kx1p:
                         Log.d("squads","squads");
-                        String urlKX1P = "http://ec2-52-11-41-143.us-west-2.compute.amazonaws.com/v1/players/5";
+                        String urlKX1P = "http://ec2-52-37-151-238.us-west-2.compute.amazonaws.com/v1/players/5";
                         MyAsyncTask asyncTaskKx1p =new MyAsyncTask(new AsyncResponse() {
 
                             List<Players> srhPlayersList=new ArrayList<Players>();
@@ -691,7 +691,7 @@ public class BaseActivity extends Activity {
                         return true;
                     case R.id.gl:
                         Log.d("squads","squads");
-                        String urlGl = "http://ec2-52-11-41-143.us-west-2.compute.amazonaws.com/v1/players/7";
+                        String urlGl = "http://ec2-52-37-151-238.us-west-2.compute.amazonaws.com/v1/players/7";
                         MyAsyncTask asyncTaskGl =new MyAsyncTask(new AsyncResponse() {
 
                             List<Players> srhPlayersList=new ArrayList<Players>();
@@ -726,7 +726,7 @@ public class BaseActivity extends Activity {
                         return true;
                     case R.id.rps:
                         Log.d("rps","rps");
-                        String urlRps = "http://ec2-52-11-41-143.us-west-2.compute.amazonaws.com/v1/players/8";
+                        String urlRps = "http://ec2-52-37-151-238.us-west-2.compute.amazonaws.com/v1/players/8";
                         MyAsyncTask asyncTaskRps =new MyAsyncTask(new AsyncResponse() {
 
                             List<Players> rpsPlayersList=new ArrayList<Players>();
@@ -776,7 +776,7 @@ public class BaseActivity extends Activity {
         final int awayTeamId = Matches.getId(currentMatch.getAwayTeam());
         final Matches currentMatchFinal=currentMatch;
 
-        String urlRps = "http://ec2-52-11-41-143.us-west-2.compute.amazonaws.com/v1/players/"+homeTeamId;
+        String urlRps = "http://ec2-52-37-151-238.us-west-2.compute.amazonaws.com/v1/players/"+homeTeamId;
         MyAsyncTask asyncTaskRps =new MyAsyncTask(new AsyncResponse() {
 
             List<Players> playersList=new ArrayList<Players>();
@@ -802,7 +802,7 @@ public class BaseActivity extends Activity {
                         playersList.add(players);
                     }
 
-                    String urlRps = "http://ec2-52-11-41-143.us-west-2.compute.amazonaws.com/v1/players/"+awayTeamId;
+                    String urlRps = "http://ec2-52-37-151-238.us-west-2.compute.amazonaws.com/v1/players/"+awayTeamId;
                     MyAsyncTask asyncTaskRps =new MyAsyncTask(new AsyncResponse() {
 
                         @Override
